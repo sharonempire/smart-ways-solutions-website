@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-cormorant: 'Cormorant Garamond';
+    --font-inter: 'Inter';
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0D0F0C;
+    color: #F4EFE6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (hover: hover) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
+
+  ::selection {
+    background: #2A5C2A;
+    color: #F4EFE6;
+  }
+}
+
+@layer utilities {
+  .display-font {
+    font-family: var(--font-cormorant), Georgia, serif;
+  }
+
+  .accent-line {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: #4CAF50;
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .delay-100 { transition-delay: 0.1s; }
+  .delay-200 { transition-delay: 0.2s; }
+  .delay-300 { transition-delay: 0.3s; }
+  .delay-400 { transition-delay: 0.4s; }
+  .delay-500 { transition-delay: 0.5s; }
+  .delay-600 { transition-delay: 0.6s; }
+  .delay-700 { transition-delay: 0.7s; }
+
+  /* ── Scan line sweep ── */
+  @keyframes scan {
+    0%   { transform: translateX(-100%); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+  .animate-scan {
+    animation: scan 3s ease-in-out infinite;
+  }
+
+  /* ── Shimmer pulse ── */
+  @keyframes shimmer-pulse {
+    0%, 100% { opacity: 0.15; }
+    50%       { opacity: 0.35; }
+  }
+  .animate-shimmer-pulse {
+    animation: shimmer-pulse 2s ease-in-out infinite;
+  }
+
+  /* ── Typewriter cursor ── */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── Cursor glow ── */
+  @keyframes cursor-glow {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50%       { transform: scale(1.4); opacity: 1; }
+  }
+  .animate-cursor-glow {
+    animation: cursor-glow 1.5s ease-in-out infinite;
+  }
+
+  /* ── Float particles ── */
+  @keyframes float-up {
+    0%   { transform: translateY(0px) translateX(0px); opacity: 0; }
+    20%  { opacity: 0.6; }
+    80%  { opacity: 0.4; }
+    100% { transform: translateY(-80px) translateX(20px); opacity: 0; }
+  }
+  .animate-float { animation: float-up linear infinite; }
+}
