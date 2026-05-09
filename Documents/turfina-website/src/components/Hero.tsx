@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import PitchExplorer from "./PitchExplorer";
 
 const HEADLINE_1 = "Engineer";
 const HEADLINE_2 = "the Pitch.";
@@ -103,19 +104,19 @@ export default function Hero() {
       >
         {/* Boundary */}
         <rect
-          data-draw data-dur="2.4" data-delay="0.1"
+          data-draw="1" data-dur="2.4" data-delay="0.1"
           x="60" y="45" width="1320" height="810"
           stroke="#4CAF50" strokeWidth="2" fill="none"
         />
         {/* Halfway line */}
         <line
-          data-draw data-dur="1.6" data-delay="0.8"
+          data-draw="1" data-dur="1.6" data-delay="0.8"
           x1="720" y1="45" x2="720" y2="855"
           stroke="#4CAF50" strokeWidth="1.5"
         />
         {/* Centre circle */}
         <ellipse
-          data-draw data-dur="1.8" data-delay="1.2"
+          data-draw="1" data-dur="1.8" data-delay="1.2"
           cx="720" cy="450" rx="130" ry="88"
           stroke="#4CAF50" strokeWidth="1.5" fill="none"
         />
@@ -123,36 +124,36 @@ export default function Hero() {
         <circle cx="720" cy="450" r="5" fill="#4CAF50" opacity="0.5" />
         {/* Left penalty area */}
         <rect
-          data-draw data-dur="1.4" data-delay="1.6"
+          data-draw="1" data-dur="1.4" data-delay="1.6"
           x="60" y="270" width="220" height="360"
           stroke="#4CAF50" strokeWidth="1.2" fill="none"
         />
         {/* Right penalty area */}
         <rect
-          data-draw data-dur="1.4" data-delay="1.6"
+          data-draw="1" data-dur="1.4" data-delay="1.6"
           x="1160" y="270" width="220" height="360"
           stroke="#4CAF50" strokeWidth="1.2" fill="none"
         />
         {/* Left goal area */}
         <rect
-          data-draw data-dur="1" data-delay="2"
+          data-draw="1" data-dur="1" data-delay="2"
           x="60" y="340" width="100" height="220"
           stroke="#4CAF50" strokeWidth="1" fill="none"
         />
         {/* Right goal area */}
         <rect
-          data-draw data-dur="1" data-delay="2"
+          data-draw="1" data-dur="1" data-delay="2"
           x="1280" y="340" width="100" height="220"
           stroke="#4CAF50" strokeWidth="1" fill="none"
         />
-        {/* Corner arcs — drawn as tiny arcs */}
-        <path data-draw data-dur="0.8" data-delay="2.4"
+        {/* Corner arcs */}
+        <path data-draw="1" data-dur="0.8" data-delay="2.4"
           d="M60 45 Q90 45 90 75" stroke="#4CAF50" strokeWidth="1" fill="none" />
-        <path data-draw data-dur="0.8" data-delay="2.4"
+        <path data-draw="1" data-dur="0.8" data-delay="2.4"
           d="M1380 45 Q1350 45 1350 75" stroke="#4CAF50" strokeWidth="1" fill="none" />
-        <path data-draw data-dur="0.8" data-delay="2.4"
+        <path data-draw="1" data-dur="0.8" data-delay="2.4"
           d="M60 855 Q90 855 90 825" stroke="#4CAF50" strokeWidth="1" fill="none" />
-        <path data-draw data-dur="0.8" data-delay="2.4"
+        <path data-draw="1" data-dur="0.8" data-delay="2.4"
           d="M1380 855 Q1350 855 1350 825" stroke="#4CAF50" strokeWidth="1" fill="none" />
       </svg>
 
@@ -305,9 +306,22 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* ── Pitch Explorer ── */}
+      <div
+        className="relative z-20 w-full mt-8"
+        style={{
+          maxWidth: "1100px",
+          opacity: ctaVisible ? 1 : 0,
+          transform: ctaVisible ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s",
+        }}
+      >
+        <PitchExplorer />
+      </div>
+
       {/* ── CTAs ── */}
       <div
-        className="relative z-20 mt-10 flex flex-col sm:flex-row items-center gap-4"
+        className="relative z-20 mt-8 flex flex-col sm:flex-row items-center gap-4"
         style={{
           opacity: ctaVisible ? 1 : 0,
           transform: ctaVisible ? "translateY(0)" : "translateY(16px)",
