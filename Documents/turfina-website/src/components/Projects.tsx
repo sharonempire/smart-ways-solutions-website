@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "./Reveal";
 
@@ -117,37 +119,37 @@ export default function Projects() {
   const [featured, ...rest] = projects;
 
   return (
-    <section className="bg-[#0D0F0C] py-24 md:py-36 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden" style={{ background: "#0D0F0C" }}>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <span className="block w-8 h-px bg-[#4CAF50]" />
-          <span className="text-[#4CAF50] text-[10px] tracking-[0.3em] uppercase font-medium">Project Portfolio</span>
-        </div>
+        <Reveal>
+          <div className="eyebrow-strip mb-5">
+            <span className="accent-line" />
+            <span className="eyebrow">Project Portfolio</span>
+          </div>
+        </Reveal>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <h2
-            className="text-[#F4EFE6] leading-tight"
-            style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              fontWeight: 300,
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-            }}
-          >
-            From Bahrain
-            <br />
-            <em style={{ fontStyle: "italic" }}>to Kerala.</em>
-          </h2>
-          <Link
-            href="/projects"
-            className="text-[#F4EFE6]/50 hover:text-[#4CAF50] text-[10px] tracking-[0.2em] uppercase transition-colors duration-200 flex items-center gap-2 self-start md:self-auto"
-          >
-            All projects
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
+          <Reveal delay={80}>
+            <h2 className="section-title">
+              From Bahrain
+              <br />
+              <em style={{ fontStyle: "italic", color: "rgba(244,239,230,0.65)" }}>to Kerala.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={160} direction="right">
+            <Link
+              href="/projects"
+              className="flex items-center gap-2.5 group self-start md:self-auto"
+              style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(244,239,230,0.4)", transition: "color 0.2s ease" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#4CAF50"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(244,239,230,0.4)"; }}
+            >
+              All projects
+              <svg className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </Reveal>
         </div>
 
         {/* Mosaic grid */}

@@ -150,26 +150,17 @@ export default function Testimonials() {
 
         {/* Header */}
         <Reveal>
-          <div className="flex items-center gap-4 mb-6">
-            <span className="block w-8 h-px bg-[#4CAF50]" />
-            <span className="text-[#4CAF50] text-[10px] tracking-[0.3em] uppercase font-medium">Client Voices</span>
+          <div className="eyebrow-strip mb-5">
+            <span className="accent-line" />
+            <span className="eyebrow">Client Voices</span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
-            <h2
-              className="text-[#F4EFE6] leading-tight"
-              style={{
-                fontFamily: "var(--font-cormorant), Georgia, serif",
-                fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                fontWeight: 300,
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-              }}
-            >
+            <h2 className="section-title">
               From the people
               <br />
-              <em style={{ fontStyle: "italic" }}>who built with us.</em>
+              <em style={{ fontStyle: "italic", color: "rgba(244,239,230,0.65)" }}>who built with us.</em>
             </h2>
-            <p className="text-[#F4EFE6]/30 text-sm font-light">
+            <p style={{ fontSize: "13px", fontWeight: 300, color: "rgba(244,239,230,0.25)" }}>
               {active + 1} / {testimonials.length}
             </p>
           </div>

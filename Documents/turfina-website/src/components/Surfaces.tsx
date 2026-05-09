@@ -128,37 +128,43 @@ function TurfBg({ offset }: { offset: number }) {
 
 export default function Surfaces() {
   return (
-    <section className="bg-[#0A0C09] py-24 md:py-36">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section className="relative py-24 md:py-36 overflow-hidden" style={{ background: "#090B08" }}>
+      {/* Faint ambient glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 100% 50% at 50% 100%, rgba(20,55,18,0.2) 0%, transparent 70%)" }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <span className="block w-8 h-px bg-[#4CAF50]" />
-          <span className="text-[#4CAF50] text-[10px] tracking-[0.3em] uppercase font-medium">Surfaces</span>
-        </div>
+        <Reveal>
+          <div className="eyebrow-strip mb-5">
+            <span className="accent-line" />
+            <span className="eyebrow">Surfaces</span>
+          </div>
+        </Reveal>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <h2
-            className="text-[#F4EFE6] max-w-xl leading-tight"
-            style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              fontWeight: 300,
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-            }}
-          >
-            Every discipline.
-            <br />
-            <em style={{ fontStyle: "italic" }}>One standard.</em>
-          </h2>
-          <Link
-            href="/surfaces"
-            className="text-[#F4EFE6]/50 hover:text-[#4CAF50] text-[10px] tracking-[0.2em] uppercase transition-colors duration-200 flex items-center gap-2 self-start md:self-auto"
-          >
-            View all surfaces
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
+          <Reveal delay={80}>
+            <h2 className="section-title max-w-lg">
+              Every discipline.
+              <br />
+              <em style={{ fontStyle: "italic", color: "rgba(244,239,230,0.65)" }}>One standard.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={160} direction="right">
+            <Link
+              href="/surfaces"
+              className="flex items-center gap-2.5 group self-start md:self-auto"
+              style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(244,239,230,0.4)", transition: "color 0.2s ease" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#4CAF50"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(244,239,230,0.4)"; }}
+            >
+              View all surfaces
+              <svg className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </Reveal>
         </div>
 
         {/* Surface cards — visual */}
@@ -234,25 +240,34 @@ export default function Surfaces() {
         </div>
 
         {/* CTA strip */}
-        <div className="mt-px bg-[#0A0C09] border border-white/5 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <p
-              className="text-[#F4EFE6] mb-2"
-              style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", fontWeight: 300, fontStyle: "italic" }}
-            >
-              Not sure which surface fits your project?
-            </p>
-            <p className="text-[#F4EFE6]/40 text-sm font-light">
-              Our engineers assess your land, usage, and budget — free site visit within 48 hours.
-            </p>
-          </div>
-          <Link
-            href="/enquire"
-            className="shrink-0 bg-[#2A5C2A] hover:bg-[#3A7C3A] text-[#F4EFE6] px-8 py-4 text-[10px] tracking-[0.2em] uppercase font-medium transition-colors duration-200 whitespace-nowrap"
+        <Reveal delay={100}>
+          <div
+            className="mt-px p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+            style={{
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid rgba(74,175,80,0.12)",
+            }}
           >
-            Request Site Visit
-          </Link>
-        </div>
+            <div>
+              <p
+                className="display-font text-[#F4EFE6] mb-2"
+                style={{ fontSize: "1.5rem", fontWeight: 300, fontStyle: "italic" }}
+              >
+                Not sure which surface fits your project?
+              </p>
+              <p className="section-body text-sm">
+                Our engineers assess your land, usage, and budget — free site visit within 48 hours.
+              </p>
+            </div>
+            <Link href="/enquire" className="btn-primary shrink-0 whitespace-nowrap">
+              Request Site Visit
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

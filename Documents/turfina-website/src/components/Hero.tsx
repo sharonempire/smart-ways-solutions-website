@@ -1,146 +1,186 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-const tiles = [
-  { label: "Football Turf", stripe: 0 },
-  { label: "5-a-side", stripe: 1 },
-  { label: "Athletic Track", stripe: 0 },
-  { label: "Multi-Sport", stripe: 1 },
-  { label: "Cricket Outfield", stripe: 0 },
-  { label: "Academy Grade", stripe: 1 },
-  { label: "GCC Certified", stripe: 0 },
-  { label: "Floodlit Surface", stripe: 1 },
-  { label: "Kozhikode", stripe: 0 },
-  { label: "Installation", stripe: 1 },
-  { label: "Surface Eng.", stripe: 0 },
-  { label: "Malappuram", stripe: 1 },
-];
+const HEADLINE_1 = "Engineer";
+const HEADLINE_2 = "the Pitch.";
+const TAGLINE = "Where the next generation of Kerala sport begins.";
 
-const SUBTITLE = "Where the next generation of Kerala sports begins.";
-
-const particles = Array.from({ length: 18 }, (_, i) => ({
+const particles = Array.from({ length: 24 }, (_, i) => ({
   id: i,
-  left: `${8 + (i * 5.3) % 84}%`,
-  delay: `${(i * 0.7) % 5}s`,
-  duration: `${4 + (i * 0.4) % 4}s`,
-  size: i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1.5,
+  left: `${6 + (i * 4.1) % 88}%`,
+  delay: `${(i * 0.61) % 7}s`,
+  duration: `${6 + (i * 0.55) % 5}s`,
+  size: [2, 1.5, 1, 2.5][i % 4],
+  opacity: [0.6, 0.35, 0.5, 0.25][i % 4],
 }));
 
-function TurfTile({ label, stripe, index, hoveredIndex, onHover, onLeave }: {
-  label: string; stripe: number; index: number;
-  hoveredIndex: number | null; onHover: (i: number) => void; onLeave: () => void;
-}) {
-  const isHovered = hoveredIndex === index;
-  const blurred = hoveredIndex !== null && !isHovered;
-
-  return (
-    <div
-      className="relative overflow-hidden cursor-pointer"
-      style={{
-        filter: blurred ? "blur(3px) brightness(0.4)" : "blur(0px) brightness(1)",
-        transform: isHovered ? "scale(1.04)" : "scale(1)",
-        transition: "filter 0.45s ease, transform 0.45s ease",
-        zIndex: isHovered ? 2 : 1,
-      }}
-      onMouseEnter={() => onHover(index)}
-      onMouseLeave={onLeave}
-    >
-      {/* Turf stripes */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 10 }).map((_, j) => (
-          <div key={j} className="absolute w-full" style={{
-            top: `${j * 10}%`, height: "10%",
-            background: (j + stripe) % 2 === 0 ? "rgba(20,60,20,0.95)" : "rgba(14,45,14,0.95)",
-          }} />
-        ))}
-      </div>
-
-      {/* Pitch SVG */}
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice">
-        {index % 4 === 0 && (<>
-          <rect x="12" y="12" width="176" height="126" stroke="#4CAF50" strokeWidth="1.5" fill="none" opacity="0.5" />
-          <line x1="100" y1="12" x2="100" y2="138" stroke="#4CAF50" strokeWidth="1" opacity="0.4" />
-          <ellipse cx="100" cy="75" rx="28" ry="20" stroke="#4CAF50" strokeWidth="1" fill="none" opacity="0.4" />
-          <circle cx="100" cy="75" r="2" fill="#4CAF50" opacity="0.6" />
-        </>)}
-        {index % 4 === 1 && (<>
-          <rect x="40" y="20" width="120" height="110" stroke="#4CAF50" strokeWidth="1.2" fill="none" opacity="0.4" />
-          <ellipse cx="100" cy="75" rx="50" ry="38" stroke="#4CAF50" strokeWidth="1" fill="none" opacity="0.3" />
-        </>)}
-        {index % 4 === 2 && (<>
-          <line x1="0" y1="75" x2="200" y2="75" stroke="#4CAF50" strokeWidth="1" opacity="0.4" />
-          <rect x="70" y="40" width="60" height="70" stroke="#4CAF50" strokeWidth="1.2" fill="none" opacity="0.4" />
-          <path d="M70 75 Q100 55 130 75" stroke="#4CAF50" strokeWidth="1" fill="none" opacity="0.35" />
-        </>)}
-        {index % 4 === 3 && (<>
-          <rect x="8" y="8" width="184" height="134" stroke="#4CAF50" strokeWidth="1" fill="none" opacity="0.35" />
-          <rect x="8" y="55" width="30" height="40" stroke="#4CAF50" strokeWidth="1" fill="none" opacity="0.35" />
-          <rect x="162" y="55" width="30" height="40" stroke="#4CAF50" strokeWidth="1" fill="none" opacity="0.35" />
-        </>)}
-      </svg>
-
-      {/* Hover label */}
-      <div className="absolute inset-0 flex items-end p-3" style={{ opacity: isHovered ? 1 : 0, transition: "opacity 0.3s ease" }}>
-        <span className="text-white/70 uppercase font-medium" style={{ fontSize: "9px", letterSpacing: "0.15em" }}>
-          {label}
-        </span>
-      </div>
-    </div>
-  );
-}
+const stats = [
+  { value: "47+", label: "Pitches Built" },
+  { value: "9",   label: "Countries" },
+  { value: "21yr", label: "Experience" },
+];
 
 export default function Hero() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [typedText, setTypedText] = useState("");
+  const [phase, setPhase] = useState<"enter" | "typed" | "ready">("enter");
+  const [typedLen, setTypedLen] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
-  const [ctaReady, setCtaReady] = useState(false);
+  const pitchRef = useRef<SVGSVGElement>(null);
 
-  /* Typewriter */
+  /* Orchestrated entrance sequence */
   useEffect(() => {
-    let i = 0;
-    const delay = setTimeout(() => {
-      const interval = setInterval(() => {
-        setTypedText(SUBTITLE.slice(0, i + 1));
+    /* 1. After 400ms start typewriter */
+    const t1 = setTimeout(() => {
+      let i = 0;
+      const iv = setInterval(() => {
         i++;
-        if (i >= SUBTITLE.length) {
-          clearInterval(interval);
-          setCtaReady(true);
-          setTimeout(() => setShowCursor(false), 1200);
+        setTypedLen(i);
+        if (i >= TAGLINE.length) {
+          clearInterval(iv);
+          setPhase("typed");
+          /* 2. 900ms after typing done → reveal CTAs */
+          setTimeout(() => {
+            setPhase("ready");
+            setTimeout(() => setShowCursor(false), 1000);
+          }, 900);
         }
-      }, 38);
-      return () => clearInterval(interval);
-    }, 900);
-    return () => clearTimeout(delay);
+      }, 32);
+    }, 800);
+    return () => clearTimeout(t1);
   }, []);
 
-  return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
+  /* Pitch SVG draw-in */
+  useEffect(() => {
+    if (!pitchRef.current) return;
+    const lines = pitchRef.current.querySelectorAll<SVGElement>("[data-draw]");
+    lines.forEach((el, i) => {
+      const len = (el as SVGGeometryElement).getTotalLength?.() ?? 400;
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String(len);
+      el.style.transition = `stroke-dashoffset ${el.dataset.dur ?? "1.8"}s ${el.dataset.ease ?? "cubic-bezier(0.22,1,0.36,1)"} ${el.dataset.delay ?? "0"}s`;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.style.strokeDashoffset = "0";
+      }));
+    });
+  }, []);
 
-      {/* Tile grid */}
-      <div className="absolute inset-0 grid grid-cols-4 grid-rows-3 gap-px bg-black/80">
-        {tiles.map((tile, i) => (
-          <TurfTile
-            key={i} label={tile.label} stripe={tile.stripe} index={i}
-            hoveredIndex={hoveredIndex}
-            onHover={setHoveredIndex}
-            onLeave={() => setHoveredIndex(null)}
+  const ctaVisible = phase === "ready";
+
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ background: "#060806" }}>
+
+      {/* ── Deep background radial atmosphere ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 55%, rgba(20,60,18,0.45) 0%, rgba(8,12,7,0.0) 70%)",
+        }}
+      />
+
+      {/* ── Pitch grid / turf stripes ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 14 }).map((_, j) => (
+          <div
+            key={j}
+            className="absolute w-full"
+            style={{
+              top: `${j * (100 / 14)}%`,
+              height: `${100 / 14}%`,
+              background: j % 2 === 0 ? "rgba(14,26,12,0.7)" : "rgba(10,18,9,0.7)",
+            }}
           />
         ))}
       </div>
 
-      {/* Scan line sweep */}
+      {/* ── Full-pitch SVG with animated draw ── */}
+      <svg
+        ref={pitchRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ opacity: 0.18 }}
+      >
+        {/* Boundary */}
+        <rect
+          data-draw data-dur="2.4" data-delay="0.1"
+          x="60" y="45" width="1320" height="810"
+          stroke="#4CAF50" strokeWidth="2" fill="none"
+        />
+        {/* Halfway line */}
+        <line
+          data-draw data-dur="1.6" data-delay="0.8"
+          x1="720" y1="45" x2="720" y2="855"
+          stroke="#4CAF50" strokeWidth="1.5"
+        />
+        {/* Centre circle */}
+        <ellipse
+          data-draw data-dur="1.8" data-delay="1.2"
+          cx="720" cy="450" rx="130" ry="88"
+          stroke="#4CAF50" strokeWidth="1.5" fill="none"
+        />
+        {/* Centre dot */}
+        <circle cx="720" cy="450" r="5" fill="#4CAF50" opacity="0.5" />
+        {/* Left penalty area */}
+        <rect
+          data-draw data-dur="1.4" data-delay="1.6"
+          x="60" y="270" width="220" height="360"
+          stroke="#4CAF50" strokeWidth="1.2" fill="none"
+        />
+        {/* Right penalty area */}
+        <rect
+          data-draw data-dur="1.4" data-delay="1.6"
+          x="1160" y="270" width="220" height="360"
+          stroke="#4CAF50" strokeWidth="1.2" fill="none"
+        />
+        {/* Left goal area */}
+        <rect
+          data-draw data-dur="1" data-delay="2"
+          x="60" y="340" width="100" height="220"
+          stroke="#4CAF50" strokeWidth="1" fill="none"
+        />
+        {/* Right goal area */}
+        <rect
+          data-draw data-dur="1" data-delay="2"
+          x="1280" y="340" width="100" height="220"
+          stroke="#4CAF50" strokeWidth="1" fill="none"
+        />
+        {/* Corner arcs — drawn as tiny arcs */}
+        <path data-draw data-dur="0.8" data-delay="2.4"
+          d="M60 45 Q90 45 90 75" stroke="#4CAF50" strokeWidth="1" fill="none" />
+        <path data-draw data-dur="0.8" data-delay="2.4"
+          d="M1380 45 Q1350 45 1350 75" stroke="#4CAF50" strokeWidth="1" fill="none" />
+        <path data-draw data-dur="0.8" data-delay="2.4"
+          d="M60 855 Q90 855 90 825" stroke="#4CAF50" strokeWidth="1" fill="none" />
+        <path data-draw data-dur="0.8" data-delay="2.4"
+          d="M1380 855 Q1350 855 1350 825" stroke="#4CAF50" strokeWidth="1" fill="none" />
+      </svg>
+
+      {/* ── Horizontal thin vignette lines (depth) ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, rgba(6,8,6,0.95) 0%, rgba(6,8,6,0.2) 18%, transparent 35%, transparent 65%, rgba(6,8,6,0.25) 82%, rgba(6,8,6,0.98) 100%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to right, rgba(6,8,6,0.85) 0%, transparent 18%, transparent 82%, rgba(6,8,6,0.85) 100%)",
+        }}
+      />
+
+      {/* ── Scan sweep ── */}
       <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
         <div
-          className="absolute top-0 bottom-0 w-32 animate-scan"
+          className="absolute top-0 bottom-0 w-48 animate-scan"
           style={{
-            background: "linear-gradient(90deg, transparent, rgba(74,175,80,0.06), rgba(74,175,80,0.12), rgba(74,175,80,0.06), transparent)",
+            background: "linear-gradient(90deg, transparent 0%, rgba(74,175,80,0.04) 40%, rgba(74,175,80,0.09) 50%, rgba(74,175,80,0.04) 60%, transparent 100%)",
           }}
         />
       </div>
 
-      {/* Floating particles */}
+      {/* ── Floating particles ── */}
       <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
         {particles.map((p) => (
           <div
@@ -148,7 +188,7 @@ export default function Hero() {
             className="absolute rounded-full animate-float"
             style={{
               left: p.left,
-              bottom: "5%",
+              bottom: "2%",
               width: `${p.size}px`,
               height: `${p.size}px`,
               background: "#4CAF50",
@@ -160,105 +200,197 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Gradient fades */}
-      <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-black via-black/70 to-transparent pointer-events-none z-10" />
-      <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent pointer-events-none z-10" />
+      {/* ── Main content ── */}
+      <div className="relative z-20 flex flex-col items-center text-center px-6 pointer-events-none select-none" style={{ maxWidth: "1100px" }}>
 
-      {/* Wordmark */}
-      <div className="relative z-20 flex flex-col items-center text-center px-6 pointer-events-none select-none">
-        <div className="relative mb-6">
-          {/* Blurred glow */}
-          <h1 aria-hidden="true" className="absolute inset-0 font-black text-white" style={{
-            fontSize: "clamp(5.5rem, 20vw, 18rem)",
-            lineHeight: 0.88,
-            letterSpacing: "-0.045em",
-            filter: "blur(40px)",
-            opacity: 0.6,
-            fontFamily: "'Arial Black', Impact, sans-serif",
+        {/* Eyebrow */}
+        <div
+          className="flex items-center gap-4 mb-10 animate-hero-up"
+          style={{ animationDelay: "0.15s" }}
+        >
+          <span className="block w-8 h-px bg-[#4CAF50]" style={{ opacity: 0.6 }} />
+          <span style={{
+            fontSize: "9px",
+            letterSpacing: "0.38em",
+            textTransform: "uppercase",
+            color: "rgba(74,175,80,0.85)",
+            fontWeight: 500,
           }}>
-            Turfina
-          </h1>
-          {/* Sharp */}
-          <h1 className="relative font-black text-white" style={{
-            fontSize: "clamp(5.5rem, 20vw, 18rem)",
-            lineHeight: 0.88,
-            letterSpacing: "-0.045em",
-            fontFamily: "'Arial Black', Impact, sans-serif",
-          }}>
-            Turfina
-          </h1>
+            FIFA · IAAF · GCC · ISO 9001
+          </span>
+          <span className="block w-8 h-px bg-[#4CAF50]" style={{ opacity: 0.6 }} />
         </div>
 
-        {/* Typewriter subtitle */}
-        <div className="h-8 flex items-center justify-center">
-          <p className="text-white/65 font-light" style={{ fontSize: "clamp(0.9rem, 1.6vw, 1.2rem)", lineHeight: 1.6 }}>
-            {typedText}
+        {/* Wordmark — Cormorant at dramatic scale */}
+        <div className="relative mb-6 animate-hero-up" style={{ animationDelay: "0.3s" }}>
+          {/* Ghost glow behind */}
+          <h1
+            aria-hidden="true"
+            className="absolute inset-0 display-font text-[#F4EFE6] pointer-events-none"
+            style={{
+              fontSize: "clamp(5rem, 18vw, 16rem)",
+              fontWeight: 300,
+              letterSpacing: "-0.03em",
+              lineHeight: 0.9,
+              filter: "blur(48px)",
+              opacity: 0.22,
+              userSelect: "none",
+            }}
+          >
+            {HEADLINE_1}
+            <br />
+            {HEADLINE_2}
+          </h1>
+
+          {/* Sharp headline */}
+          <h1
+            className="relative display-font"
+            style={{
+              fontSize: "clamp(5rem, 18vw, 16rem)",
+              fontWeight: 300,
+              letterSpacing: "-0.03em",
+              lineHeight: 0.9,
+              color: "#F4EFE6",
+            }}
+          >
+            {HEADLINE_1}
+            <br />
+            <em style={{
+              fontStyle: "italic",
+              fontWeight: 300,
+              background: "linear-gradient(135deg, #F4EFE6 0%, rgba(244,239,230,0.6) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
+              {HEADLINE_2}
+            </em>
+          </h1>
+
+          {/* Green accent line beneath */}
+          <div className="flex justify-center mt-5">
+            <div
+              style={{
+                width: "80px",
+                height: "1px",
+                background: "linear-gradient(90deg, transparent, #4CAF50, transparent)",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Typewriter tagline */}
+        <div
+          className="h-10 flex items-center justify-center mb-4 animate-hero-up"
+          style={{ animationDelay: "0.5s" }}
+        >
+          <p
+            style={{
+              fontSize: "clamp(0.9rem, 1.5vw, 1.15rem)",
+              fontWeight: 300,
+              color: "rgba(244,239,230,0.55)",
+              letterSpacing: "0.025em",
+              lineHeight: 1.6,
+              fontFamily: "var(--font-inter), sans-serif",
+            }}
+          >
+            {TAGLINE.slice(0, typedLen)}
             {showCursor && (
-              <span className="inline-block w-0.5 h-5 bg-[#4CAF50] ml-0.5 align-middle animate-blink" />
+              <span
+                className="inline-block w-0.5 h-5 ml-1 align-middle animate-blink"
+                style={{ background: "#4CAF50", borderRadius: "1px" }}
+              />
             )}
           </p>
         </div>
       </div>
 
-      {/* CTA */}
+      {/* ── CTAs ── */}
       <div
-        className="relative z-20 mt-10 flex flex-col items-center gap-3"
+        className="relative z-20 mt-10 flex flex-col sm:flex-row items-center gap-4"
         style={{
-          opacity: ctaReady ? 1 : 0,
-          transform: ctaReady ? "translateY(0)" : "translateY(12px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
+          opacity: ctaVisible ? 1 : 0,
+          transform: ctaVisible ? "translateY(0)" : "translateY(16px)",
+          transition: "opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1)",
+          pointerEvents: ctaVisible ? "auto" : "none",
         }}
       >
-        {/* Shimmer button */}
-        <Link
-          href="/enquire"
-          className="relative overflow-hidden group bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-[#4CAF50]/60 text-white font-medium px-10 py-4 rounded-full transition-all duration-300"
-          style={{ fontSize: "0.9rem", letterSpacing: "0.04em" }}
-        >
-          <span className="relative z-10">Build Your Pitch</span>
-          {/* Shimmer sweep on hover */}
-          <span
-            className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(74,175,80,0.15), transparent)" }}
-          />
+        <Link href="/enquire" className="btn-primary">
+          Build Your Pitch
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
         </Link>
-        <p className="text-white/30 text-[10px] tracking-[0.2em] uppercase mt-1">Scroll to Explore</p>
+        <Link href="/about" className="btn-ghost">
+          Our Story
+        </Link>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1">
-        <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/30" style={{ animation: "pulse 2s ease-in-out infinite" }} />
-      </div>
-
-      {/* GCC badge */}
-      <div className="absolute top-24 right-6 md:right-10 z-20"
-        style={{ opacity: ctaReady ? 1 : 0, transition: "opacity 0.8s ease 0.3s" }}
+      {/* ── Stats strip ── */}
+      <div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center gap-12"
+        style={{
+          opacity: ctaVisible ? 1 : 0,
+          transform: ctaVisible ? "translateY(0)" : "translateY(10px)",
+          transition: "opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s",
+        }}
       >
-        <div className="bg-black/40 backdrop-blur-sm border border-white/10 px-4 py-2 text-right">
-          <p className="text-[#4CAF50] text-[10px] tracking-[0.2em] uppercase font-medium">GCC Certified</p>
-          <p className="text-white/40 text-[9px] tracking-[0.1em] uppercase mt-0.5">Bahrain · Qatar · UAE</p>
+        {stats.map((s, i) => (
+          <div key={s.label} className="flex items-center gap-12">
+            <div className="text-center">
+              <p
+                className="display-font text-[#F4EFE6]"
+                style={{ fontSize: "1.75rem", fontWeight: 300, lineHeight: 1 }}
+              >
+                {s.value}
+              </p>
+              <p style={{ fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(244,239,230,0.3)", marginTop: "4px" }}>
+                {s.label}
+              </p>
+            </div>
+            {i < stats.length - 1 && (
+              <div className="w-px h-8 bg-white/10" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* ── GCC badge ── */}
+      <div
+        className="absolute top-24 right-6 md:right-10 z-20"
+        style={{
+          opacity: ctaVisible ? 1 : 0,
+          transition: "opacity 0.8s ease 0.4s",
+        }}
+      >
+        <div
+          className="glass px-4 py-3 text-right"
+          style={{ border: "1px solid rgba(74,175,80,0.15)" }}
+        >
+          <p style={{ fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#4CAF50", fontWeight: 500 }}>
+            GCC Certified
+          </p>
+          <p style={{ fontSize: "8px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(244,239,230,0.3)", marginTop: "3px" }}>
+            Bahrain · Qatar · UAE
+          </p>
         </div>
       </div>
 
-      {/* Stats strip — bottom left */}
+      {/* ── Scroll indicator ── */}
       <div
-        className="absolute bottom-10 left-6 md:left-10 z-20 hidden md:flex items-center gap-8"
-        style={{ opacity: ctaReady ? 1 : 0, transition: "opacity 0.8s ease 0.5s" }}
+        className="absolute bottom-8 right-8 z-20 flex flex-col items-center gap-2"
+        style={{
+          opacity: ctaVisible ? 0.4 : 0,
+          transition: "opacity 1s ease 0.6s",
+        }}
       >
-        {[
-          { value: "47+", label: "Pitches" },
-          { value: "9", label: "Countries" },
-          { value: "10yr", label: "Warranty" },
-        ].map((s) => (
-          <div key={s.label}>
-            <p className="text-white/80 font-light" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", lineHeight: 1 }}>
-              {s.value}
-            </p>
-            <p className="text-white/30 text-[9px] tracking-[0.15em] uppercase">{s.label}</p>
-          </div>
-        ))}
+        <span style={{ fontSize: "7px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(244,239,230,0.4)", writingMode: "vertical-rl" }}>
+          Scroll
+        </span>
+        <div
+          className="w-px animate-breathe"
+          style={{ height: "48px", background: "linear-gradient(to bottom, rgba(74,175,80,0.6), transparent)" }}
+        />
       </div>
     </section>
   );

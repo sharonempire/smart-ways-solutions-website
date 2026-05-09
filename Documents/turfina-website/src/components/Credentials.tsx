@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 
 const certifications = [
@@ -37,65 +40,98 @@ const timeline = [
 
 export default function Credentials() {
   return (
-    <section className="bg-[#0D0F0C] py-24 md:py-36 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section
+      className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden"
+      style={{ background: "#0B0D0A" }}
+    >
+      {/* Subtle pitch stripe bg */}
+      <div className="absolute inset-0 pitch-stripes pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <span className="block w-8 h-px bg-[#4CAF50]" />
-          <span className="text-[#4CAF50] text-[10px] tracking-[0.3em] uppercase font-medium">Heritage & Credentials</span>
-        </div>
+        <Reveal>
+          <div className="eyebrow-strip mb-5">
+            <span className="accent-line" />
+            <span className="eyebrow">Heritage &amp; Credentials</span>
+          </div>
+        </Reveal>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
-          <h2
-            className="text-[#F4EFE6] max-w-xl leading-tight"
-            style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              fontWeight: 300,
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-            }}
-          >
-            GCC quality.
-            <br />
-            <em style={{ fontStyle: "italic" }}>Kerala commitment.</em>
-          </h2>
-          <p className="text-[#F4EFE6]/45 max-w-xs leading-relaxed text-sm font-light">
-            Over two decades of surface engineering across the Gulf brings international-grade precision to every pitch we lay in India.
-          </p>
+          <Reveal delay={80}>
+            <h2 className="section-title max-w-xl">
+              GCC quality.
+              <br />
+              <em style={{ fontStyle: "italic", color: "rgba(244,239,230,0.65)" }}>Kerala commitment.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={160} direction="right">
+            <p className="section-body max-w-sm">
+              Over two decades of surface engineering across the Gulf brings international-grade precision to every pitch we lay in India.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Cert cards — visual */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 mb-20">
+        {/* Cert cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px mb-20" style={{ background: "rgba(255,255,255,0.04)" }}>
           {certifications.map((cert, i) => (
-            <Reveal key={cert.name} delay={i * 100}>
+            <Reveal key={cert.name} delay={i * 90}>
             <div
-              className="relative bg-[#0D0F0C] p-8 group hover:bg-[#111410] transition-colors duration-300 overflow-hidden h-full"
+              className="relative group overflow-hidden h-full"
+              style={{
+                background: "#0B0D0A",
+                padding: "clamp(1.5rem, 3vw, 2.5rem)",
+                transition: "background 0.4s ease",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#0F1510"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#0B0D0A"; }}
             >
+              {/* Radial glow on hover */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "radial-gradient(ellipse 80% 60% at 20% 80%, rgba(74,175,80,0.06) 0%, transparent 70%)" }}
+              />
+
               {/* Background number */}
               <p
-                className="absolute -top-4 -right-2 text-white/3 select-none pointer-events-none"
-                style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "6rem", fontWeight: 700, lineHeight: 1 }}
+                className="absolute -top-3 -right-1 select-none pointer-events-none display-font"
+                style={{ fontSize: "5.5rem", fontWeight: 700, lineHeight: 1, color: "rgba(255,255,255,0.025)" }}
                 aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
               </p>
 
-              {/* Green indicator dot */}
-              <div className="w-8 h-8 border border-[#4CAF50]/25 group-hover:border-[#4CAF50]/60 flex items-center justify-center mb-5 transition-all duration-300">
-                <div className="w-2.5 h-2.5 bg-[#4CAF50]/50 group-hover:bg-[#4CAF50] transition-colors duration-300" />
+              {/* Green indicator */}
+              <div
+                className="w-8 h-8 flex items-center justify-center mb-6 transition-all duration-400"
+                style={{
+                  border: "1px solid rgba(74,175,80,0.2)",
+                  transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(74,175,80,0.5)";
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 12px rgba(74,175,80,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(74,175,80,0.2)";
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                }}
+              >
+                <div
+                  className="w-2.5 h-2.5 group-hover:bg-[#4CAF50] transition-colors duration-300"
+                  style={{ background: "rgba(74,175,80,0.4)" }}
+                />
               </div>
 
               {/* Value */}
               <p
-                className="text-[#4CAF50] mb-1"
-                style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.3rem", fontWeight: 300 }}
+                className="display-font text-[#4CAF50] mb-1"
+                style={{ fontSize: "1.4rem", fontWeight: 300 }}
               >
                 {cert.value}
               </p>
 
-              <p className="text-[#F4EFE6] font-medium text-sm mb-1.5">{cert.name}</p>
-              <p className="text-[#F4EFE6]/40 text-xs font-light leading-relaxed">{cert.desc}</p>
+              <p className="text-[#F4EFE6] font-medium text-sm mb-2" style={{ letterSpacing: "0.01em" }}>{cert.name}</p>
+              <p className="section-body text-xs leading-relaxed">{cert.desc}</p>
             </div>
             </Reveal>
           ))}
