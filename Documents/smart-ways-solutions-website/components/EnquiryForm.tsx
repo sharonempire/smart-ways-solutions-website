@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { trackEvent } from "@/components/TrackEvent";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -43,6 +44,7 @@ export default function EnquiryForm() {
 
       setState("success");
       setForm(initialForm);
+      trackEvent("enquiry_submitted", { loan_type: form.loanType, city: form.city });
     } catch (err) {
       setState("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");

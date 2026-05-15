@@ -7,7 +7,8 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Loan Types" },
   { href: "/eligibility", label: "Eligibility" },
-  { href: "/emi-calculator", label: "EMI Calculator" },
+  { href: "/emi-calculator", label: "EMI Calc" },
+  { href: "/eligibility-check", label: "Check Eligibility" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

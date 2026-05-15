@@ -5,6 +5,8 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import JsonLd from "@/components/JsonLd";
+import Analytics from "@/components/Analytics";
+import CookieBanner from "@/components/CookieBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,12 +88,14 @@ export default function RootLayout({
     <html lang="en-IN" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
         <JsonLd />
+        <Analytics />
       </head>
       <body className="min-h-full flex flex-col">
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <CookieBanner />
       </body>
     </html>
   );
