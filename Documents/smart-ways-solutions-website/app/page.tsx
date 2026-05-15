@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import BankPartners from "@/components/BankPartners";
 import CTABanner from "@/components/CTABanner";
+import EMICalculator from "@/components/EMICalculator";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Smart Way Solutions | Home Loan & Finance Consultancy Kerala",
+  description:
+    "Kerala's trusted home loan DSA — best rates from SBI, HDFC, ICICI, Muthoot and 12+ more lenders. KSFE loan transfer, NRI loans, business loans. Free consultation.",
+  alternates: { canonical: "https://www.smartwaysolutions.in" },
+};
 
 const loanCategories = [
   {
@@ -205,6 +214,78 @@ export default function Home() {
                 <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
                 <p className="text-gray-400 text-xs">{t.location}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Phase 18 — EMI Calculator */}
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
+              Free Tool
+            </span>
+            <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">Calculate Your EMI</h2>
+            <p className="text-gray-500 mt-2 text-sm">Adjust the sliders to see your monthly repayment instantly.</p>
+          </div>
+          <EMICalculator />
+        </div>
+      </section>
+
+      {/* Phase 16 — Kerala SEO keyword content */}
+      <section className="py-16 px-6 bg-[#f8f8f8]">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-[#1a1a1a] text-2xl font-black mb-6 text-center">
+            Home Loans in Kerala — Everything You Need to Know
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-600 leading-relaxed">
+            <div>
+              <h3 className="text-[#1a1a1a] font-bold mb-2">Home Loan Consultant in Kerala</h3>
+              <p>
+                Smart Way Solutions is a registered loan DSA (Direct Selling Agent) serving customers across Kerala. We work directly with nationalised banks like SBI and Bank of Baroda, new-generation private banks like ICICI and HDFC, and NBFCs like Muthoot Finance and Manappuram — so you get the widest choice with a single enquiry.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#1a1a1a] font-bold mb-2">KSFE Loan Transfer to Bank</h3>
+              <p>
+                KSFE home loans run at 9%–9.75% interest. We transfer them to nationalised and private banks at 8.3%–9%, often saving borrowers ₹2,000–₹5,000 per month. KSFE charges no premature closure penalty, making the switch straightforward. We handle the entire process — outstanding certificate, NOC, title deed transfer, and fresh mortgage registration.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#1a1a1a] font-bold mb-2">NRI Home Loan in Kerala</h3>
+              <p>
+                Kerala has one of India's largest NRI populations — particularly Gulf workers in UAE, Saudi Arabia, Qatar, and Kuwait. We specialise in NRI home loans with full Power of Attorney support so the process can be completed without the borrower being physically present. Both salaried and self-employed NRIs are eligible.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#1a1a1a] font-bold mb-2">Home Loan Without ITR in Kerala</h3>
+              <p>
+                Small business owners and self-employed individuals who don't file ITR are often turned away by banks. We work with NBFCs and Housing Finance Companies that assess income based on 12–24 months of bank statements instead. If you run a business and don't have ITR, we can still find you a lender.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#1a1a1a] font-bold mb-2">Cooperative Society Loan Takeover</h3>
+              <p>
+                Many Keralites have housing loans with primary cooperative societies charging 9%–12%. We facilitate takeovers from these societies to banks offering significantly lower rates. Our team knows which banks accept society loan transfers and manages the entire documentation and legal process on your behalf.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#1a1a1a] font-bold mb-2">Best Home Loan Rate in Kerala 2025</h3>
+              <p>
+                Current home loan rates in Kerala start at 8.35% p.a. (SBI) for salaried borrowers with CIBIL 750+. Rates vary by lender, employment type, loan amount, and credit profile. We compare live offers across all our partners and present you with the best available rate — at no cost to you.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-wrap gap-2 justify-center">
+            {[
+              "Home Loan Kozhikode", "Home Loan Thrissur", "Home Loan Ernakulam",
+              "Home Loan Kannur", "Home Loan Malappuram", "KSFE Transfer Kerala",
+              "NRI Loan Kerala", "Plot Loan Kerala", "LAP Kerala", "Business Loan Kerala",
+            ].map((tag) => (
+              <span key={tag} className="bg-white border border-gray-200 text-gray-500 text-xs px-3 py-1.5 rounded-full">
+                {tag}
+              </span>
             ))}
           </div>
         </div>

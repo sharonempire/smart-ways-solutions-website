@@ -5,9 +5,10 @@ import Logo from "./Logo";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/services", label: "Loan Types" },
   { href: "/eligibility", label: "Eligibility" },
+  { href: "/emi-calculator", label: "EMI Calculator" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
