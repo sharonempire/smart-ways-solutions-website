@@ -48,8 +48,21 @@ export default function Footer() {
             <li className="flex gap-2"><span>📍</span><span>Kerala, India</span></li>
             <li className="flex gap-2"><span>🕐</span><span>Mon–Sat: 9 AM – 7 PM</span></li>
           </ul>
-          <div className="flex gap-3 mt-5">
-            <a href="https://www.instagram.com/smartwaysolutionsloanservices" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#F5A623] transition-colors text-xs underline">Instagram</a>
+          <div className="flex flex-col gap-2 mt-5">
+            <a href="https://www.instagram.com/smartwaysolutionsloanservices" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#F5A623] transition-colors text-xs underline">
+              Instagram
+            </a>
+            <a
+              href="https://www.google.com/maps/search/Smart+Way+Solutions+Kerala"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-gray-400 hover:text-[#F5A623] transition-colors text-xs"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
+              View on Google Maps
+            </a>
           </div>
         </div>
       </div>

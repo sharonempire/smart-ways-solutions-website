@@ -4,6 +4,7 @@ import Stats from "@/components/Stats";
 import BankPartners from "@/components/BankPartners";
 import CTABanner from "@/components/CTABanner";
 import EMICalculator from "@/components/EMICalculator";
+import GoogleReviews from "@/components/GoogleReviews";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -290,6 +291,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <GoogleReviews />
 
       <CTABanner />
     </>

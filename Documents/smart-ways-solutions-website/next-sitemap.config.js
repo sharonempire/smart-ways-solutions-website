@@ -17,9 +17,18 @@ module.exports = {
     await config.transform(config, "/services"),
     await config.transform(config, "/about"),
     await config.transform(config, "/eligibility"),
+    await config.transform(config, "/eligibility-check"),
     await config.transform(config, "/enquire"),
     await config.transform(config, "/contact"),
     await config.transform(config, "/emi-calculator"),
+    await config.transform(config, "/testimonials"),
+    // Blog
+    await config.transform(config, "/blog"),
+    await config.transform(config, "/blog/ksfe-loan-transfer"),
+    await config.transform(config, "/blog/home-loan-without-itr"),
+    await config.transform(config, "/blog/nri-home-loan-guide"),
+    await config.transform(config, "/blog/what-is-top-up-loan"),
+    await config.transform(config, "/blog/cibil-score-home-loan"),
     // City pages
     await config.transform(config, "/kozhikode"),
     await config.transform(config, "/thrissur"),

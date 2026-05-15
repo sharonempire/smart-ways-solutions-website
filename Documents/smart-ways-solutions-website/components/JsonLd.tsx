@@ -6,6 +6,13 @@ export default function JsonLd() {
         "@type": "LocalBusiness",
         "@id": "https://www.smartwaysolutions.in/#business",
         name: "Smart Way Solutions",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: "2500",
+          bestRating: "5",
+          worstRating: "1",
+        },
         description:
           "Kerala's trusted loan DSA — home loans, KSFE takeover, loan against property, and business loans from 16+ nationalised banks, private banks, and NBFCs.",
         url: "https://www.smartwaysolutions.in",

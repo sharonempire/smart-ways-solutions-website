@@ -156,6 +156,6 @@ MDX-based blog with Next.js App Router.
 | 20 | Eligibility Calculator | 🟡 Medium | ⏳ |
 | 21 | Testimonials with Photos | 🟡 Medium | ⏳ |
 | 22 | Blog / Knowledge Base | 🟢 Low | ⏳ |
-| 23 | Performance | 🟢 Low | ⏳ |
-| 24 | Vercel Deployment | 🟢 Low | ⏳ |
-| 25 | GMB + Reviews | 🟢 Low | ⏳ |
+| 23 | Performance | 🟢 Low | ✅ Done |
+| 24 | Vercel Deployment | 🟢 Low | ✅ Done |
+| 25 | GMB + Reviews | 🟢 Low | ✅ Done |
