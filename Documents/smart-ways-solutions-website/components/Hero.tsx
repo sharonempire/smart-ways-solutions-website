@@ -28,7 +28,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-3 mb-5">
               <Link
                 href="/enquire"
-                className="bg-[#F5A623] text-black px-8 py-3.5 rounded-lg font-black hover:bg-[#d4891a] transition-colors text-sm text-center"
+                className="btn-shimmer btn-pulse bg-[#F5A623] text-black px-8 py-3.5 rounded-lg font-black hover:bg-[#d4891a] transition-colors text-sm text-center"
               >
                 Apply for a Loan — Free
               </Link>

@@ -44,7 +44,7 @@ function StatCounter({ stat, started }: { stat: StatItem; started: boolean }) {
       : `${stat.prefix}${count}${stat.suffix}`;
 
   return (
-    <div className="text-center">
+    <div className="text-center bg-[#F5A623] rounded-2xl py-6 px-4 stat-glow cursor-default">
       <p className="text-black text-3xl md:text-4xl font-black tabular-nums">{display}</p>
       <p className="text-black/70 text-sm mt-1 font-semibold">{stat.label}</p>
     </div>
@@ -73,7 +73,7 @@ export default function Stats() {
 
   return (
     <section ref={ref} className="bg-[#F5A623] py-10">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
         {stats.map((s) => (
           <StatCounter key={s.label} stat={s} started={started} />
         ))}

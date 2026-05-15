@@ -12,7 +12,7 @@ export default function CTABanner() {
         </p>
         <Link
           href="/enquire"
-          className="bg-black text-white px-10 py-3.5 rounded-lg font-bold hover:bg-gray-900 transition-colors text-base inline-block"
+          className="btn-shimmer btn-pulse bg-black text-white px-10 py-3.5 rounded-lg font-bold hover:bg-gray-900 transition-colors text-base inline-block"
         >
           Apply for a Loan — It&apos;s Free
         </Link>
