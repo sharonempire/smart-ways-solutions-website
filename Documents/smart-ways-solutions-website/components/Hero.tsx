@@ -11,21 +11,33 @@ export default function Hero() {
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-          {/* Left — copy */}
+          {/* Left — copy with staggered entrance */}
           <div>
-            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-5">
+            <span
+              className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-5"
+              style={{ animation: "hero-fade-up 0.5s ease 0.05s both" }}
+            >
               Kerala&apos;s Trusted Loan Partner
             </span>
-            <h1 className="text-4xl md:text-5xl font-black leading-tight mb-5">
+            <h1
+              className="text-4xl md:text-5xl font-black leading-tight mb-5"
+              style={{ animation: "hero-fade-up 0.55s ease 0.15s both" }}
+            >
               Get Your Home Loan{" "}
               <span className="text-[#F5A623]">Approved</span>{" "}
               — the Smart Way.
             </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+            <p
+              className="text-gray-300 text-base md:text-lg leading-relaxed mb-8"
+              style={{ animation: "hero-fade-up 0.55s ease 0.25s both" }}
+            >
               We compare live offers from SBI, HDFC, ICICI, Bank of Baroda, Muthoot, and 11+ more lenders — so you get the lowest rate, fastest approval, and zero paperwork stress.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 mb-5">
+            <div
+              className="flex flex-col sm:flex-row gap-3 mb-5"
+              style={{ animation: "hero-fade-up 0.55s ease 0.35s both" }}
+            >
               <Link
                 href="/enquire"
                 className="btn-shimmer btn-pulse bg-[#F5A623] text-black px-8 py-3.5 rounded-lg font-black hover:bg-[#d4891a] transition-colors text-sm text-center"
@@ -40,12 +52,18 @@ export default function Hero() {
               </Link>
             </div>
 
-            <p className="text-gray-500 text-xs">
+            <p
+              className="text-gray-500 text-xs"
+              style={{ animation: "hero-fade-up 0.5s ease 0.42s both" }}
+            >
               Salaried • Self-Employed • NRI &nbsp;|&nbsp; Home Loans • LAP • Takeover • Business Loans
             </p>
 
             {/* Trust row */}
-            <div className="flex items-center gap-5 mt-8 pt-8 border-t border-white/10">
+            <div
+              className="flex items-center gap-5 mt-8 pt-8 border-t border-white/10"
+              style={{ animation: "hero-fade-up 0.5s ease 0.5s both" }}
+            >
               {[
                 { val: "16+", label: "Lenders" },
                 { val: "98%", label: "Approval rate" },
@@ -60,10 +78,23 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — interactive EMI card */}
-          <HeroEmiCard />
+          {/* Right — EMI card slides in from right */}
+          <div style={{ animation: "hero-slide-right 0.6s ease 0.2s both" }}>
+            <HeroEmiCard />
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes hero-fade-up {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes hero-slide-right {
+          from { opacity: 0; transform: translateX(32px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
     </section>
   );
 }

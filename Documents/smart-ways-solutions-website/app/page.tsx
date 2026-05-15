@@ -6,6 +6,7 @@ import CTABanner from "@/components/CTABanner";
 import EMICalculator from "@/components/EMICalculator";
 import GoogleReviews from "@/components/GoogleReviews";
 import WaveDivider from "@/components/WaveDivider";
+import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -92,7 +93,7 @@ export default function Home() {
       {/* Loan Categories */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
               What We Offer
             </span>
@@ -102,27 +103,28 @@ export default function Home() {
             <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm">
               Whether you are buying a home, transferring a high-interest loan, unlocking property value, or growing your business — we have a loan for it.
             </p>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {loanCategories.map((cat) => (
-              <Link
-                key={cat.title}
-                href={cat.href}
-                className={`bg-white rounded-xl p-6 border-2 transition-all shadow-sm hover:shadow-md flex flex-col ${cat.color}`}
-              >
-                <p className="text-3xl mb-3">{cat.icon}</p>
-                <span className={`text-xs font-bold px-2 py-0.5 rounded-full w-fit mb-2 ${cat.badge}`}>
-                  {cat.title}
-                </span>
-                <p className="text-gray-600 text-xs leading-relaxed mb-4">{cat.desc}</p>
-                <ul className="space-y-1 mt-auto">
-                  {cat.items.map((item) => (
-                    <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
-                      <span className="text-[#F5A623] font-bold">›</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </Link>
+            {loanCategories.map((cat, i) => (
+              <FadeIn key={cat.title} delay={i * 80}>
+                <Link
+                  href={cat.href}
+                  className={`bg-white rounded-xl p-6 border-2 transition-all shadow-sm hover:shadow-md flex flex-col h-full ${cat.color}`}
+                >
+                  <p className="text-3xl mb-3">{cat.icon}</p>
+                  <span className={`text-xs font-bold px-2 py-0.5 rounded-full w-fit mb-2 ${cat.badge}`}>
+                    {cat.title}
+                  </span>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-4">{cat.desc}</p>
+                  <ul className="space-y-1 mt-auto">
+                    {cat.items.map((item) => (
+                      <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span className="text-[#F5A623] font-bold">›</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Link>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -134,19 +136,21 @@ export default function Home() {
       {/* How It Works */}
       <section className="py-20 px-6 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
               The Process
             </span>
             <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">How It Works</h2>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-            {howItWorks.map((s) => (
-              <div key={s.step} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm text-center">
-                <p className="text-[#F5A623] text-3xl font-black mb-2">{s.step}</p>
-                <p className="text-[#1a1a1a] font-bold text-sm mb-1">{s.title}</p>
-                <p className="text-gray-500 text-xs leading-relaxed">{s.desc}</p>
-              </div>
+            {howItWorks.map((s, i) => (
+              <FadeIn key={s.step} delay={i * 90}>
+                <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm text-center">
+                  <p className="text-[#F5A623] text-3xl font-black mb-2">{s.step}</p>
+                  <p className="text-[#1a1a1a] font-bold text-sm mb-1">{s.title}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{s.desc}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -158,7 +162,7 @@ export default function Home() {
       {/* Who Can Apply */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div>
+          <FadeIn from="left">
             <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
               Eligibility
             </span>
@@ -181,26 +185,28 @@ export default function Home() {
             <Link href="/eligibility" className="inline-block mt-6 border-2 border-[#F5A623] text-[#1a1a1a] px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-[#F5A623] transition-colors">
               Check Full Eligibility →
             </Link>
-          </div>
-          <div className="bg-[#1a1a1a] rounded-2xl p-8 text-white">
-            <p className="text-[#F5A623] font-bold text-sm mb-5 uppercase tracking-widest">Why Smart Way</p>
-            <ul className="space-y-4">
-              {[
-                { icon: "🏦", text: "16+ bank and NBFC partners — widest options in Kerala" },
-                { icon: "📄", text: "Full documentation support — we handle everything" },
-                { icon: "💰", text: "Best rate guarantee — we compare all available offers" },
-                { icon: "⚡", text: "Sanctions in 7–15 working days via direct bank relationships" },
-                { icon: "🔄", text: "KSFE and society loan takeovers — our speciality" },
-                { icon: "✈️", text: "Dedicated NRI support with PoA assistance" },
-                { icon: "🆓", text: "100% free service — paid by the bank, not you" },
-              ].map((pt) => (
-                <li key={pt.text} className="flex items-start gap-3 text-sm text-gray-300">
-                  <span className="text-lg shrink-0">{pt.icon}</span>
-                  {pt.text}
-                </li>
-              ))}
-            </ul>
-          </div>
+          </FadeIn>
+          <FadeIn from="right" delay={100}>
+            <div className="bg-[#1a1a1a] rounded-2xl p-8 text-white">
+              <p className="text-[#F5A623] font-bold text-sm mb-5 uppercase tracking-widest">Why Smart Way</p>
+              <ul className="space-y-4">
+                {[
+                  { icon: "🏦", text: "16+ bank and NBFC partners — widest options in Kerala" },
+                  { icon: "📄", text: "Full documentation support — we handle everything" },
+                  { icon: "💰", text: "Best rate guarantee — we compare all available offers" },
+                  { icon: "⚡", text: "Sanctions in 7–15 working days via direct bank relationships" },
+                  { icon: "🔄", text: "KSFE and society loan takeovers — our speciality" },
+                  { icon: "✈️", text: "Dedicated NRI support with PoA assistance" },
+                  { icon: "🆓", text: "100% free service — paid by the bank, not you" },
+                ].map((pt) => (
+                  <li key={pt.text} className="flex items-start gap-3 text-sm text-gray-300">
+                    <span className="text-lg shrink-0">{pt.icon}</span>
+                    {pt.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -212,38 +218,42 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
               Success Stories
             </span>
             <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">
               Keralites Who Got Approved
             </h2>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-[#f8f8f8] rounded-xl p-6 border border-gray-100">
-                <p className="text-[#F5A623] text-3xl font-black mb-3">&ldquo;</p>
-                <p className="text-gray-700 text-sm leading-relaxed mb-5">{t.quote}</p>
-                <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
-                <p className="text-gray-400 text-xs">{t.location}</p>
-              </div>
+            {testimonials.map((t, i) => (
+              <FadeIn key={t.name} delay={i * 100}>
+                <div className="bg-[#f8f8f8] rounded-xl p-6 border border-gray-100 h-full">
+                  <p className="text-[#F5A623] text-3xl font-black mb-3">&ldquo;</p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-5">{t.quote}</p>
+                  <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
+                  <p className="text-gray-400 text-xs">{t.location}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Phase 18 — EMI Calculator */}
+      {/* EMI Calculator */}
       <section className="py-16 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10">
+          <FadeIn className="text-center mb-10">
             <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
               Free Tool
             </span>
             <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">Calculate Your EMI</h2>
             <p className="text-gray-500 mt-2 text-sm">Adjust the sliders to see your monthly repayment instantly.</p>
-          </div>
-          <EMICalculator />
+          </FadeIn>
+          <FadeIn delay={100}>
+            <EMICalculator />
+          </FadeIn>
         </div>
       </section>
 

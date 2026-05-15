@@ -7,6 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import JsonLd from "@/components/JsonLd";
 import Analytics from "@/components/Analytics";
 import CookieBanner from "@/components/CookieBanner";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -89,7 +90,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1"><PageTransition>{children}</PageTransition></main>
         <Footer />
         <WhatsAppButton />
         <CookieBanner />
