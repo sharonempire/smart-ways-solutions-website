@@ -7,6 +7,7 @@ import EMICalculator from "@/components/EMICalculator";
 import GoogleReviews from "@/components/GoogleReviews";
 import WaveDivider from "@/components/WaveDivider";
 import FadeIn from "@/components/FadeIn";
+import TiltCard from "@/components/TiltCard";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -107,23 +108,25 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {loanCategories.map((cat, i) => (
               <FadeIn key={cat.title} delay={i * 80}>
-                <Link
-                  href={cat.href}
-                  className={`bg-white rounded-xl p-6 border-2 transition-all shadow-sm hover:shadow-md flex flex-col h-full ${cat.color}`}
-                >
-                  <p className="text-3xl mb-3">{cat.icon}</p>
-                  <span className={`text-xs font-bold px-2 py-0.5 rounded-full w-fit mb-2 ${cat.badge}`}>
-                    {cat.title}
-                  </span>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-4">{cat.desc}</p>
-                  <ul className="space-y-1 mt-auto">
-                    {cat.items.map((item) => (
-                      <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
-                        <span className="text-[#F5A623] font-bold">›</span> {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Link>
+                <TiltCard className="h-full">
+                  <Link
+                    href={cat.href}
+                    className={`bg-white rounded-xl p-6 border-2 transition-all shadow-sm hover:shadow-md flex flex-col h-full ${cat.color}`}
+                  >
+                    <p className="text-3xl mb-3">{cat.icon}</p>
+                    <span className={`text-xs font-bold px-2 py-0.5 rounded-full w-fit mb-2 ${cat.badge}`}>
+                      {cat.title}
+                    </span>
+                    <p className="text-gray-600 text-xs leading-relaxed mb-4">{cat.desc}</p>
+                    <ul className="space-y-1 mt-auto">
+                      {cat.items.map((item) => (
+                        <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
+                          <span className="text-[#F5A623] font-bold">›</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </Link>
+                </TiltCard>
               </FadeIn>
             ))}
           </div>
@@ -229,12 +232,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <FadeIn key={t.name} delay={i * 100}>
-                <div className="bg-[#f8f8f8] rounded-xl p-6 border border-gray-100 h-full">
-                  <p className="text-[#F5A623] text-3xl font-black mb-3">&ldquo;</p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-5">{t.quote}</p>
-                  <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
-                  <p className="text-gray-400 text-xs">{t.location}</p>
-                </div>
+                <TiltCard className="h-full" maxTilt={5}>
+                  <div className="bg-[#f8f8f8] rounded-xl p-6 border border-gray-100 h-full">
+                    <p className="text-[#F5A623] text-3xl font-black mb-3">&ldquo;</p>
+                    <p className="text-gray-700 text-sm leading-relaxed mb-5">{t.quote}</p>
+                    <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
+                    <p className="text-gray-400 text-xs">{t.location}</p>
+                  </div>
+                </TiltCard>
               </FadeIn>
             ))}
           </div>

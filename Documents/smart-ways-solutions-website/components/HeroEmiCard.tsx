@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 const PRESETS = [
@@ -20,8 +20,35 @@ function formatINR(n: number) {
   return `₹${n.toLocaleString("en-IN")}`;
 }
 
+// Spring bounce — plays a quick scale 1 → 1.08 → 0.96 → 1 sequence
+function useSpring(trigger: number) {
+  const [phase, setPhase] = useState<"idle" | "up" | "down" | "settle">("idle");
+  const prev = useRef(trigger);
+
+  useEffect(() => {
+    if (trigger === prev.current) return;
+    prev.current = trigger;
+
+    setPhase("up");
+    const t1 = setTimeout(() => setPhase("down"), 120);
+    const t2 = setTimeout(() => setPhase("settle"), 240);
+    const t3 = setTimeout(() => setPhase("idle"), 380);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [trigger]);
+
+  const scale = phase === "up" ? 1.09 : phase === "down" ? 0.96 : 1;
+  const transition =
+    phase === "up"
+      ? "transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1)"
+      : phase === "down"
+      ? "transform 0.1s ease-in"
+      : "transform 0.18s cubic-bezier(0.22, 1, 0.36, 1)";
+
+  return { scale, transition };
+}
+
 export default function HeroEmiCard() {
-  const [selected, setSelected] = useState(1); // default ₹40L
+  const [selected, setSelected] = useState(1);
   const rate = 8.5;
   const tenure = 20;
 
@@ -30,6 +57,8 @@ export default function HeroEmiCard() {
   const totalPayable = emi * tenure * 12;
   const totalInterest = totalPayable - amount;
   const interestPct = Math.round((totalInterest / totalPayable) * 100);
+
+  const spring = useSpring(selected);
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
@@ -54,15 +83,23 @@ export default function HeroEmiCard() {
         ))}
       </div>
 
-      {/* EMI result */}
-      <div className="bg-[#F5A623] rounded-xl p-5 text-center mb-4">
-        <p className="text-black/60 text-xs font-semibold mb-1">Monthly EMI</p>
-        <p className="text-black text-4xl font-black tracking-tight">
-          {formatINR(emi)}
-        </p>
-        <p className="text-black/50 text-xs mt-1">
-          at {rate}% p.a. · {tenure} yr tenure
-        </p>
+      {/* EMI result — spring bounce wrapper */}
+      <div
+        style={{
+          transform: `scale(${spring.scale})`,
+          transition: spring.transition,
+          transformOrigin: "center",
+        }}
+      >
+        <div className="bg-[#F5A623] rounded-xl p-5 text-center mb-4">
+          <p className="text-black/60 text-xs font-semibold mb-1">Monthly EMI</p>
+          <p className="text-black text-4xl font-black tracking-tight">
+            {formatINR(emi)}
+          </p>
+          <p className="text-black/50 text-xs mt-1">
+            at {rate}% p.a. · {tenure} yr tenure
+          </p>
+        </div>
       </div>
 
       {/* Breakdown bar */}
