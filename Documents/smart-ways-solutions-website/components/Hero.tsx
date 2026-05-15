@@ -13,30 +13,32 @@ export default function Hero() {
       />
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-4">
-          Trusted Finance Consultancy
+          Kerala&apos;s Trusted Loan Facilitation Partner
         </p>
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-          Smart Financial Decisions <br />
-          <span className="text-[#c9a84c]">Start Here.</span>
+          Your Dream Home, <br />
+          <span className="text-[#c9a84c]">Funded the Smart Way.</span>
         </h1>
         <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Smart Ways Solutions provides expert financial guidance — from wealth
-          management and tax advisory to investment planning and business finance.
+          We connect you with the best home loan and property loan offers from 16+ nationalised banks, private banks, and NBFCs — at the lowest rates, with zero hassle.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/contact"
+            href="/enquire"
             className="bg-[#c9a84c] text-[#0a1f44] px-8 py-3 rounded font-semibold hover:bg-[#e2c97e] transition-colors text-base"
           >
-            Book Free Consultation
+            Apply for a Loan
           </Link>
           <Link
             href="/services"
             className="border border-gray-400 text-white px-8 py-3 rounded font-semibold hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors text-base"
           >
-            Explore Services
+            Explore Loan Types
           </Link>
         </div>
+        <p className="mt-6 text-gray-400 text-xs">
+          SBI • Bank of Baroda • ICICI • HDFC • Axis • Muthoot • Manappuram • and more
+        </p>
       </div>
     </section>
   );

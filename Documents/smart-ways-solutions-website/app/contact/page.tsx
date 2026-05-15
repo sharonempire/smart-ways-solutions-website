@@ -1,8 +1,9 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact | Smart Ways Solutions",
-  description: "Get in touch with Smart Ways Solutions to book a free consultation or ask any questions.",
+  description: "Contact Smart Ways Solutions — Kerala's trusted home loan and property loan facilitator.",
 };
 
 export default function ContactPage() {
@@ -13,8 +14,14 @@ export default function ContactPage() {
         <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-3">Get In Touch</p>
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
         <p className="text-gray-300 max-w-xl mx-auto text-lg">
-          Book your free 30-minute consultation or send us a message — we respond within one business day.
+          Have a question? Want to know your loan eligibility? Reach out and we will get back to you within one business day.
         </p>
+        <Link
+          href="/enquire"
+          className="mt-6 inline-block bg-[#c9a84c] text-[#0a1f44] px-8 py-3 rounded font-semibold hover:bg-[#e2c97e] transition-colors"
+        >
+          Apply for a Loan Instead →
+        </Link>
       </section>
 
       {/* Contact Section */}

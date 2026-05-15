@@ -1,8 +1,8 @@
 const stats = [
-  { value: "15+", label: "Years of Experience" },
-  { value: "1,200+", label: "Clients Served" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "$2B+", label: "Assets Under Advisory" },
+  { value: "16+", label: "Bank & NBFC Partners" },
+  { value: "2,500+", label: "Loans Sanctioned" },
+  { value: "98%", label: "Approval Rate" },
+  { value: "₹500 Cr+", label: "Loans Facilitated" },
 ];
 
 export default function Stats() {

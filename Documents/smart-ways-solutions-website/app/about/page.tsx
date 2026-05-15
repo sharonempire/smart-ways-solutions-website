@@ -3,37 +3,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us | Smart Ways Solutions",
-  description: "Learn about Smart Ways Solutions — our story, our team, and our commitment to exceptional financial advisory.",
+  description: "Smart Ways Solutions — Kerala's trusted loan facilitation partner with direct tie-ups with nationalised banks, private banks, and NBFCs.",
 };
 
-const team = [
-  {
-    name: "David Mitchell",
-    role: "Founder & Managing Director",
-    bio: "25+ years in financial services across private banking and corporate advisory.",
-  },
-  {
-    name: "Claire Watson",
-    role: "Head of Wealth Management",
-    bio: "CFA charterholder specialising in multi-generational wealth strategies.",
-  },
-  {
-    name: "Rajan Nair",
-    role: "Senior Tax Advisor",
-    bio: "Former Big Four tax partner with expertise in cross-border tax planning.",
-  },
-  {
-    name: "Emily Cheng",
-    role: "Investment Strategist",
-    bio: "12 years building data-driven portfolios for institutional and private clients.",
-  },
-];
-
 const values = [
-  { icon: "🎯", title: "Client First", desc: "Every decision is guided by your best interests — always." },
-  { icon: "🔍", title: "Transparency", desc: "Clear communication, no jargon, no hidden fees." },
-  { icon: "🤝", title: "Long-Term Partnership", desc: "We grow with you — relationships built over years, not transactions." },
-  { icon: "🏆", title: "Excellence", desc: "Rigorous standards and continuous learning drive everything we do." },
+  { icon: "🎯", title: "Client First", desc: "We fight for the best rate and terms for every single client." },
+  { icon: "🔍", title: "Transparency", desc: "No hidden charges. You know exactly what you are getting." },
+  { icon: "⚡", title: "Speed", desc: "Our bank relationships mean faster approvals than going direct." },
+  { icon: "🤝", title: "End-to-End Support", desc: "From enquiry to disbursal — we handle everything for you." },
 ];
 
 export default function AboutPage() {
@@ -41,26 +18,29 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section className="bg-[#0a1f44] text-white py-20 px-6 text-center">
-        <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-3">Our Story</p>
+        <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-3">Who We Are</p>
         <h1 className="text-4xl md:text-5xl font-bold mb-4">About Smart Ways Solutions</h1>
         <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-          Founded on the belief that great financial advice should be accessible to everyone who is serious about their future.
+          Kerala&apos;s trusted loan facilitation partner — helping families and businesses get home loans and property loans approved, faster and smarter.
         </p>
       </section>
 
-      {/* Mission */}
+      {/* Story */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">Our Mission</p>
+            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">Our Story</p>
             <h2 className="text-[#0a1f44] text-3xl font-bold mb-4">
-              Empowering Financial Clarity
+              Built to Simplify the Loan Process
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Smart Ways Solutions was founded with a clear mission: to deliver institutional-quality financial advice to individuals, families, and businesses — without the institutional barriers.
+            <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+              Smart Ways Solutions was founded with a simple idea: getting a home loan in Kerala should not be complicated. Too many people were walking into banks without guidance, getting rejected or accepting unfavourable terms simply because they did not know their options.
             </p>
-            <p className="text-gray-600 leading-relaxed">
-              Over 15 years, we have built a reputation for rigorous analysis, honest counsel, and measurable results. Our advisors bring decades of combined experience from private banking, corporate finance, and investment management.
+            <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+              We built direct tie-ups with nationalised banks like SBI and Bank of Baroda, new-generation private banks like ICICI and HDFC, and NBFCs like Muthoot Finance and Manappuram Finance — so our clients can access the full market with a single enquiry.
+            </p>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              Today, we have facilitated over ₹500 Crore in loans for Keralites — from first-time homebuyers to seasoned property investors — with a 98% approval rate and a reputation built entirely on word of mouth.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -75,22 +55,50 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* What makes us different */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">Meet the Team</p>
-            <h2 className="text-[#0a1f44] text-3xl md:text-4xl font-bold">The People Behind the Advice</h2>
+            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">Why Smart Ways</p>
+            <h2 className="text-[#0a1f44] text-3xl md:text-4xl font-bold">The Smart Ways Difference</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {team.map((member) => (
-              <div key={member.name} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm text-center hover:border-[#c9a84c] transition-colors">
-                <div className="w-16 h-16 bg-[#0a1f44] rounded-full mx-auto mb-4 flex items-center justify-center text-[#c9a84c] font-bold text-xl">
-                  {member.name.charAt(0)}
-                </div>
-                <p className="text-[#0a1f44] font-semibold">{member.name}</p>
-                <p className="text-[#c9a84c] text-xs mb-2">{member.role}</p>
-                <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "🏦",
+                title: "16+ Lending Partners",
+                desc: "Direct tie-ups with SBI, Bank of Baroda, Canara, ICICI, HDFC, Axis, Muthoot, Manappuram, and more — giving you the widest range of options.",
+              },
+              {
+                icon: "📄",
+                title: "Full Documentation Support",
+                desc: "Our team prepares, verifies, and submits all your loan documents. You never have to run between offices or figure out paperwork alone.",
+              },
+              {
+                icon: "💰",
+                title: "Best Rate Guarantee",
+                desc: "We compare live offers across all our partner banks and present you with the lowest available rate for your loan profile.",
+              },
+              {
+                icon: "📍",
+                title: "Kerala Specialists",
+                desc: "Deep knowledge of Kerala property norms, panchayat approvals, RERA compliance, and local bank procedures — no surprises.",
+              },
+              {
+                icon: "⏱️",
+                title: "Faster Approvals",
+                desc: "Our relationship with bank officials means your file gets priority processing. Most sanctions happen in 7–15 working days.",
+              },
+              {
+                icon: "🆓",
+                title: "Free Consultation",
+                desc: "Our advisory service costs you nothing. We are compensated by the lending institution — your loan fee is never inflated.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:border-[#c9a84c] transition-colors">
+                <p className="text-2xl mb-3">{item.icon}</p>
+                <p className="text-[#0a1f44] font-semibold mb-2">{item.title}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>

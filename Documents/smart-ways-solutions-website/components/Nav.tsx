@@ -5,7 +5,7 @@ import Link from "next/link";
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+  { href: "/services", label: "Loan Types" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -35,10 +35,10 @@ export default function Nav() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/enquire"
             className="bg-[#c9a84c] text-[#0a1f44] px-5 py-2 rounded text-sm font-semibold hover:bg-[#e2c97e] transition-colors"
           >
-            Get Consultation
+            Apply for a Loan
           </Link>
         </nav>
 
@@ -74,7 +74,7 @@ export default function Nav() {
             onClick={() => setOpen(false)}
             className="bg-[#c9a84c] text-[#0a1f44] px-5 py-2 rounded text-sm font-semibold text-center hover:bg-[#e2c97e] transition-colors"
           >
-            Get Consultation
+            Apply for a Loan
           </Link>
         </div>
       )}

@@ -9,8 +9,7 @@ export default function Footer() {
             Smart<span className="text-white">Ways</span> Solutions
           </p>
           <p className="text-sm leading-relaxed text-gray-400">
-            Trusted financial consultancy helping individuals and businesses
-            achieve lasting financial clarity and growth.
+            Kerala&apos;s trusted loan facilitation partner — connecting families and businesses with the best home loan and property loan offers from 16+ banks and NBFCs.
           </p>
         </div>
 
@@ -20,7 +19,8 @@ export default function Footer() {
             {[
               { href: "/", label: "Home" },
               { href: "/about", label: "About Us" },
-              { href: "/services", label: "Services" },
+              { href: "/services", label: "Loan Types" },
+              { href: "/enquire", label: "Apply for a Loan" },
               { href: "/contact", label: "Contact" },
             ].map((l) => (
               <li key={l.href}>
@@ -35,9 +35,9 @@ export default function Footer() {
         <div>
           <p className="text-white font-semibold mb-3">Contact</p>
           <ul className="space-y-2 text-sm text-gray-400">
-            <li>info@smartwayssolutions.com</li>
-            <li>+1 (800) 000-0000</li>
-            <li>123 Finance Street, Business District</li>
+            <li>loans@smartwayssolutions.com</li>
+            <li>+91 00000 00000</li>
+            <li>Kerala, India</li>
           </ul>
         </div>
       </div>
