@@ -2,20 +2,21 @@ import Link from "next/link";
 
 export default function CTABanner() {
   return (
-    <section className="bg-[#0a1f44] py-16 px-6 text-center">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
+    <section className="bg-[#F5A623] py-16 px-6">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="text-black text-3xl md:text-4xl font-black mb-3">
           Ready to Get Your Loan Approved?
         </h2>
-        <p className="text-gray-300 mb-8 text-lg">
-          Submit a quick enquiry and our loan experts will reach out within 24 hours with the best offers from our bank partners.
+        <p className="text-black/70 mb-8 text-base">
+          Submit a quick enquiry. Our advisor calls within 24 hours with the best offers from our bank partners — 100% free service.
         </p>
         <Link
           href="/enquire"
-          className="bg-[#c9a84c] text-[#0a1f44] px-10 py-3 rounded font-semibold hover:bg-[#e2c97e] transition-colors text-base inline-block"
+          className="bg-black text-white px-10 py-3.5 rounded-lg font-bold hover:bg-gray-900 transition-colors text-base inline-block"
         >
           Apply for a Loan — It&apos;s Free
         </Link>
+        <p className="text-black/50 text-xs mt-4">Salaried • Self-Employed • NRI — All categories welcome</p>
       </div>
     </section>
   );

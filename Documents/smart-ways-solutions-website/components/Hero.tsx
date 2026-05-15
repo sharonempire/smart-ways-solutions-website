@@ -2,43 +2,71 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-[#0a1f44] text-white py-24 px-6 relative overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 50%)",
-          backgroundSize: "20px 20px",
-        }}
-      />
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-4">
-          Kerala&apos;s Trusted Loan Facilitation Partner
-        </p>
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-          Your Dream Home, <br />
-          <span className="text-[#c9a84c]">Funded the Smart Way.</span>
-        </h1>
-        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          We connect you with the best home loan and property loan offers from 16+ nationalised banks, private banks, and NBFCs — at the lowest rates, with zero hassle.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/enquire"
-            className="bg-[#c9a84c] text-[#0a1f44] px-8 py-3 rounded font-semibold hover:bg-[#e2c97e] transition-colors text-base"
-          >
-            Apply for a Loan
-          </Link>
-          <Link
-            href="/services"
-            className="border border-gray-400 text-white px-8 py-3 rounded font-semibold hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors text-base"
-          >
-            Explore Loan Types
-          </Link>
+    <section className="bg-[#1a1a1a] text-white py-24 px-6 relative overflow-hidden">
+      {/* Amber accent blob bg */}
+      <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#F5A623] opacity-10 rounded-full blur-3xl" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#F5A623] opacity-8 rounded-full blur-3xl" />
+
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-5">
+              Kerala&apos;s Trusted Loan Partner
+            </span>
+            <h1 className="text-4xl md:text-5xl font-black leading-tight mb-5">
+              Get Your Home Loan <span className="text-[#F5A623]">Approved</span> — the Smart Way.
+            </h1>
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+              We connect you with the best offers from SBI, Bank of Baroda, ICICI, HDFC, Muthoot, Manappuram and 10+ more lenders — so you get the lowest rate, fastest approval, and zero paperwork stress.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/enquire"
+                className="bg-[#F5A623] text-black px-8 py-3.5 rounded-lg font-bold hover:bg-[#d4891a] transition-colors text-sm text-center"
+              >
+                Apply for a Loan — Free
+              </Link>
+              <Link
+                href="/services"
+                className="border border-gray-600 text-white px-8 py-3.5 rounded-lg font-semibold hover:border-[#F5A623] hover:text-[#F5A623] transition-colors text-sm text-center"
+              >
+                See All Loan Types
+              </Link>
+            </div>
+            <p className="mt-5 text-gray-500 text-xs">
+              Salaried • Self-Employed • NRI &nbsp;|&nbsp; Home Loans • LAP • Takeover • Business Loans
+            </p>
+          </div>
+
+          {/* Quick stats card */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+            <p className="text-[#F5A623] font-bold text-sm mb-5">Why Kerala Trusts Us</p>
+            <div className="grid grid-cols-2 gap-5">
+              {[
+                { val: "16+", label: "Bank & NBFC Partners" },
+                { val: "₹500 Cr+", label: "Loans Facilitated" },
+                { val: "98%", label: "Approval Rate" },
+                { val: "7–15", label: "Days to Sanction" },
+              ].map((s) => (
+                <div key={s.label} className="bg-white/5 rounded-xl p-4 text-center">
+                  <p className="text-[#F5A623] text-2xl font-black">{s.val}</p>
+                  <p className="text-gray-400 text-xs mt-1">{s.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 pt-5 border-t border-white/10">
+              <p className="text-gray-400 text-xs text-center mb-3">We Work With</p>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {["SBI", "HDFC", "ICICI", "Axis", "BoB", "Muthoot", "KSFE*", "Societies*"].map((b) => (
+                  <span key={b} className="bg-white/10 text-gray-300 text-xs px-2 py-1 rounded">
+                    {b}
+                  </span>
+                ))}
+              </div>
+              <p className="text-gray-600 text-[10px] text-center mt-2">*Balance transfer from KSFE and cooperative societies</p>
+            </div>
+          </div>
         </div>
-        <p className="mt-6 text-gray-400 text-xs">
-          SBI • Bank of Baroda • ICICI • HDFC • Axis • Muthoot • Manappuram • and more
-        </p>
       </div>
     </section>
   );

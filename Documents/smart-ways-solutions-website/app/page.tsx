@@ -4,57 +4,68 @@ import BankPartners from "@/components/BankPartners";
 import CTABanner from "@/components/CTABanner";
 import Link from "next/link";
 
-const loans = [
-  {
-    icon: "🏡",
-    title: "Plot Purchase Loan",
-    desc: "Buy a residential plot of your choice with financing from top banks at competitive rates.",
-  },
-  {
-    icon: "🏗️",
-    title: "Plot Purchase + Construction",
-    desc: "Finance both your land purchase and home construction under a single loan — simpler and cost-effective.",
-  },
+const loanCategories = [
   {
     icon: "🏠",
-    title: "Home Purchase Loan",
-    desc: "Purchase a ready-to-move-in home or apartment with the best rates from our 16+ bank partners.",
-  },
-  {
-    icon: "🏢",
-    title: "Under Construction Loan",
-    desc: "Funds released in stages as your home is built, so you only pay interest on what is disbursed.",
-  },
-  {
-    icon: "🔨",
-    title: "Renovation & Extension Loan",
-    desc: "Upgrade or expand your existing home with flexible loan options tailored for improvement projects.",
+    title: "Home Loans",
+    desc: "Plot purchase, home purchase, under construction, renovation, and refinance loans from top banks.",
+    items: ["Plot Purchase", "Plot + Construction", "Ready Home", "Under Construction", "Renovation", "Balance Transfer"],
+    href: "/services#home-loans",
+    color: "border-blue-200 hover:border-blue-400",
+    badge: "bg-blue-50 text-blue-700",
   },
   {
     icon: "🔄",
-    title: "Refinance / Balance Transfer",
-    desc: "Transfer your existing home loan to a bank offering lower rates and save lakhs over your tenure.",
+    title: "Loan Takeover + Top-Up",
+    desc: "Transfer your loan from KSFE, cooperative societies, or any bank to get a lower rate — plus get extra funds as a top-up.",
+    items: ["Takeover from KSFE", "Society Loan Takeover", "Bank-to-Bank Transfer", "Top-Up on Transfer", "Lower EMI guarantee"],
+    href: "/services#takeover",
+    color: "border-amber-200 hover:border-[#F5A623]",
+    badge: "bg-amber-50 text-amber-700",
   },
+  {
+    icon: "🏦",
+    title: "Loan Against Property",
+    desc: "Unlock the value of your existing property for business or personal needs at home-loan rates.",
+    items: ["Residential property", "Commercial property", "Plot / land", "Up to 65% of value", "Tenures up to 15 yrs"],
+    href: "/services#lap",
+    color: "border-green-200 hover:border-green-500",
+    badge: "bg-green-50 text-green-700",
+  },
+  {
+    icon: "💼",
+    title: "Business Loans",
+    desc: "For small businesses without ITR/GST and large businesses with full documents — we find the right lender for you.",
+    items: ["Small business / no ITR", "Formal business with ITR+GST", "Working capital", "Term loans", "MSME / Mudra"],
+    href: "/services#business",
+    color: "border-purple-200 hover:border-purple-500",
+    badge: "bg-purple-50 text-purple-700",
+  },
+];
+
+const howItWorks = [
+  { step: "01", title: "Submit Enquiry", desc: "Fill our simple form — takes 2 minutes." },
+  { step: "02", title: "Advisor Calls You", desc: "Our expert calls within 24 hours to understand your requirement." },
+  { step: "03", title: "Bank Matching", desc: "We compare live offers from 16+ lenders and present the best." },
+  { step: "04", title: "Documentation", desc: "We prepare and submit all documents on your behalf." },
+  { step: "05", title: "Sanction & Disbursal", desc: "Loan sanctioned in 7–15 days, funds disbursed to your account." },
 ];
 
 const testimonials = [
   {
     name: "Rajan Menon",
     location: "Thrissur, Kerala",
-    quote:
-      "Smart Ways got my home loan sanctioned within 10 days. They handled all the paperwork and got me a rate lower than what my bank originally quoted.",
+    quote: "Smart Way Solutions got my home loan sanctioned in 10 days. They handled all paperwork and got a rate 0.5% lower than what SBI quoted me directly.",
   },
   {
     name: "Anitha Suresh",
-    location: "Kochi, Kerala",
-    quote:
-      "I was confused about which bank to approach for my plot + construction loan. The team made it so simple and got SBI to approve it quickly.",
+    location: "Ernakulam, Kerala",
+    quote: "I had a KSFE home loan at 9.5%. Smart Way transferred it to HDFC at 8.6% — now I save ₹3,800 every month on EMI.",
   },
   {
     name: "Mohammed Ashraf",
     location: "Kozhikode, Kerala",
-    quote:
-      "Refinanced my old loan through Smart Ways and now save ₹4,200 every month on EMI. Best decision I made.",
+    quote: "As a Gulf NRI, I was worried about the loan process from abroad. Their team handled everything locally with my PoA and got the loan approved smoothly.",
   },
 ];
 
@@ -64,132 +75,134 @@ export default function Home() {
       <Hero />
       <Stats />
 
-      {/* Loan Types Preview */}
-      <section className="py-20 px-6 bg-gray-50">
+      {/* Loan Categories */}
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">
-              Loan Products
-            </p>
-            <h2 className="text-[#0a1f44] text-3xl md:text-4xl font-bold">
-              Home Loans for Every Need
+            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
+              What We Offer
+            </span>
+            <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">
+              All Types of Loans, One Place
             </h2>
             <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm">
-              Whether you are buying, building, renovating, or refinancing — we have a loan solution for you, backed by the best banks in India.
+              Whether you are buying a home, transferring a high-interest loan, unlocking property value, or growing your business — we have a loan for it.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {loans.map((l) => (
-              <div key={l.title} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:border-[#c9a84c] hover:shadow-md transition-all group">
-                <p className="text-3xl mb-3">{l.icon}</p>
-                <h3 className="text-[#0a1f44] font-semibold text-base mb-2 group-hover:text-[#c9a84c] transition-colors">{l.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{l.desc}</p>
-                <Link href="/enquire" className="text-[#c9a84c] text-sm font-semibold hover:underline">
-                  Enquire Now →
-                </Link>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {loanCategories.map((cat) => (
+              <Link
+                key={cat.title}
+                href={cat.href}
+                className={`bg-white rounded-xl p-6 border-2 transition-all shadow-sm hover:shadow-md flex flex-col ${cat.color}`}
+              >
+                <p className="text-3xl mb-3">{cat.icon}</p>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full w-fit mb-2 ${cat.badge}`}>
+                  {cat.title}
+                </span>
+                <p className="text-gray-600 text-xs leading-relaxed mb-4">{cat.desc}</p>
+                <ul className="space-y-1 mt-auto">
+                  {cat.items.map((item) => (
+                    <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
+                      <span className="text-[#F5A623] font-bold">›</span> {item}
+                    </li>
+                  ))}
+                </ul>
+              </Link>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link
-              href="/services"
-              className="border border-[#0a1f44] text-[#0a1f44] px-8 py-3 rounded font-semibold hover:bg-[#0a1f44] hover:text-white transition-colors text-sm inline-block"
-            >
-              View All Loan Details
-            </Link>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
+      <section className="py-20 px-6 bg-[#f8f8f8]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
+              The Process
+            </span>
+            <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">How It Works</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+            {howItWorks.map((s) => (
+              <div key={s.step} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm text-center">
+                <p className="text-[#F5A623] text-3xl font-black mb-2">{s.step}</p>
+                <p className="text-[#1a1a1a] font-bold text-sm mb-1">{s.title}</p>
+                <p className="text-gray-500 text-xs leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who Can Apply */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">
-              Why Choose Smart Ways
-            </p>
-            <h2 className="text-[#0a1f44] text-3xl md:text-4xl font-bold mb-6">
-              We Do the Hard Work — You Get the Keys
-            </h2>
+            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
+              Eligibility
+            </span>
+            <h2 className="text-[#1a1a1a] text-3xl font-black mb-5">Who Can Apply?</h2>
+            <div className="space-y-4">
+              {[
+                { icon: "👔", title: "Salaried Employees", desc: "Government and private sector employees with regular salary income. Min 6 months in current job, 2 years total experience." },
+                { icon: "🏪", title: "Self-Employed / Business Owners", desc: "Both small businesses (no ITR/GST) and formal businesses (with ITR + GST). We find lenders for all profiles." },
+                { icon: "✈️", title: "NRI (Gulf & Abroad)", desc: "Kerala NRIs working in Gulf countries or anywhere abroad. Repayment via NRE/NRO account. PoA support provided." },
+              ].map((cat) => (
+                <div key={cat.title} className="flex gap-4 p-4 bg-[#f8f8f8] rounded-xl">
+                  <span className="text-2xl">{cat.icon}</span>
+                  <div>
+                    <p className="text-[#1a1a1a] font-bold text-sm">{cat.title}</p>
+                    <p className="text-gray-500 text-xs leading-relaxed mt-0.5">{cat.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Link href="/eligibility" className="inline-block mt-6 border-2 border-[#F5A623] text-[#1a1a1a] px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-[#F5A623] transition-colors">
+              Check Full Eligibility →
+            </Link>
+          </div>
+          <div className="bg-[#1a1a1a] rounded-2xl p-8 text-white">
+            <p className="text-[#F5A623] font-bold text-sm mb-5 uppercase tracking-widest">Why Smart Way</p>
             <ul className="space-y-4">
               {[
-                "Access to 16+ banks and NBFCs — one application, multiple offers",
-                "Expert advisors compare rates and get you the best deal",
-                "End-to-end documentation and processing support",
-                "Faster approvals through our direct bank tie-ups",
-                "Zero hidden charges — completely transparent process",
-                "Serving Kerala with deep knowledge of local property norms",
-              ].map((point) => (
-                <li key={point} className="flex items-start gap-3 text-gray-600 text-sm">
-                  <span className="text-[#c9a84c] font-bold mt-0.5">✓</span>
-                  {point}
+                { icon: "🏦", text: "16+ bank and NBFC partners — widest options in Kerala" },
+                { icon: "📄", text: "Full documentation support — we handle everything" },
+                { icon: "💰", text: "Best rate guarantee — we compare all available offers" },
+                { icon: "⚡", text: "Sanctions in 7–15 working days via direct bank relationships" },
+                { icon: "🔄", text: "KSFE and society loan takeovers — our speciality" },
+                { icon: "✈️", text: "Dedicated NRI support with PoA assistance" },
+                { icon: "🆓", text: "100% free service — paid by the bank, not you" },
+              ].map((pt) => (
+                <li key={pt.text} className="flex items-start gap-3 text-sm text-gray-300">
+                  <span className="text-lg shrink-0">{pt.icon}</span>
+                  {pt.text}
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="bg-[#0a1f44] rounded-2xl p-8 text-white">
-            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-5">
-              How It Works
-            </p>
-            <ol className="space-y-5">
-              {[
-                { step: "01", title: "Submit Enquiry", desc: "Fill in our simple form with your loan requirement and basic details." },
-                { step: "02", title: "Free Consultation", desc: "Our advisor calls you within 24 hours to understand your needs." },
-                { step: "03", title: "Bank Matching", desc: "We shortlist the best bank offers for your profile and present them to you." },
-                { step: "04", title: "Sanction & Disbursal", desc: "We handle all paperwork and coordinate with the bank until funds are released." },
-              ].map((item) => (
-                <li key={item.step} className="flex gap-4 items-start">
-                  <span className="text-[#c9a84c] font-bold text-lg w-8 shrink-0">{item.step}</span>
-                  <div>
-                    <p className="font-semibold text-sm">{item.title}</p>
-                    <p className="text-gray-400 text-xs mt-0.5">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
       </section>
 
       <BankPartners />
 
-      {/* Also offer LAP */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-          <div className="text-5xl">🏦</div>
-          <div className="flex-1">
-            <p className="text-[#c9a84c] text-xs font-semibold uppercase tracking-widest mb-1">Also Available</p>
-            <h3 className="text-[#0a1f44] text-xl font-bold mb-2">Loan Against Property (LAP)</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">
-              Unlock the value of your existing property. Whether it is a home, commercial space, or plot — we arrange LAP from top banks and NBFCs at competitive rates for your business or personal needs.
-            </p>
-          </div>
-          <Link
-            href="/enquire"
-            className="shrink-0 bg-[#0a1f44] text-white px-6 py-3 rounded font-semibold text-sm hover:bg-[#102a5e] transition-colors"
-          >
-            Enquire for LAP
-          </Link>
-        </div>
-      </section>
-
       {/* Testimonials */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-2">
+            <span className="inline-block bg-[#F5A623] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
               Success Stories
-            </p>
-            <h2 className="text-[#0a1f44] text-3xl md:text-4xl font-bold">
-              Keralites Who Got Their Loans Approved
+            </span>
+            <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-black">
+              Keralites Who Got Approved
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                <p className="text-[#c9a84c] text-2xl mb-3">&ldquo;</p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{t.quote}</p>
-                <p className="text-[#0a1f44] font-semibold text-sm">{t.name}</p>
+              <div key={t.name} className="bg-[#f8f8f8] rounded-xl p-6 border border-gray-100">
+                <p className="text-[#F5A623] text-3xl font-black mb-3">&ldquo;</p>
+                <p className="text-gray-700 text-sm leading-relaxed mb-5">{t.quote}</p>
+                <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
                 <p className="text-gray-400 text-xs">{t.location}</p>
               </div>
             ))}

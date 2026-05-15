@@ -2,11 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a1f44;
-  --navy: #0a1f44;
-  --navy-light: #102a5e;
-  --gold: #c9a84c;
-  --gold-light: #e2c97e;
+  --foreground: #1a1a1a;
+  --amber: #F5A623;
+  --amber-dark: #d4891a;
+  --amber-light: #ffd07a;
+  --black: #1a1a1a;
+  --gray-bg: #f8f8f8;
 }
 
 @theme inline {
