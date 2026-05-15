@@ -91,11 +91,15 @@ export default function Nav() {
         aria-hidden="true"
       />
 
-      {/* Drawer panel */}
+      {/* Drawer panel — spring overshoot on open */}
       <div
-        className={`fixed top-0 right-0 h-full w-[300px] max-w-[90vw] bg-white z-50 flex flex-col shadow-2xl transition-transform duration-300 ease-out md:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[300px] max-w-[90vw] bg-white z-50 flex flex-col shadow-2xl md:hidden`}
+        style={{
+          transform: open ? "translateX(0)" : "translateX(100%)",
+          transition: open
+            ? "transform 0.38s cubic-bezier(0.34, 1.28, 0.64, 1)"
+            : "transform 0.28s cubic-bezier(0.4, 0, 1, 1)",
+        }}
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">

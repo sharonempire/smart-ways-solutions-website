@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import Analytics from "@/components/Analytics";
 import CookieBanner from "@/components/CookieBanner";
 import PageTransition from "@/components/PageTransition";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,6 +94,7 @@ export default function RootLayout({
         <main className="flex-1"><PageTransition>{children}</PageTransition></main>
         <Footer />
         <WhatsAppButton />
+        <ScrollToTop />
         <CookieBanner />
       </body>
     </html>
