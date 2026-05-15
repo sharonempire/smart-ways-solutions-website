@@ -6,25 +6,33 @@ interface LogoProps {
   variant?: "light" | "dark";
 }
 
-const heights: Record<string, number> = { sm: 40, md: 52, lg: 68 };
+// The JPEG has ~18% whitespace padding on each side around the blob.
+// We use a larger render size + negative margin crop to fill the visual space.
+const sizes: Record<string, { render: number; crop: number }> = {
+  sm: { render: 80,  crop: 14 }, // visible ~52px
+  md: { render: 110, crop: 20 }, // visible ~70px
+  lg: { render: 150, crop: 27 }, // visible ~96px
+};
 
 export default function Logo({ size = "md", variant = "dark" }: LogoProps) {
-  const h = heights[size];
-  // Logo has roughly 1:1 aspect ratio — keep it square
-  const w = h;
+  const { render, crop } = sizes[size];
 
   return (
-    <Link href="/" className="flex items-center shrink-0" aria-label="Smart Way Solutions Home">
+    <Link
+      href="/"
+      className="flex items-center shrink-0 overflow-hidden"
+      aria-label="Smart Way Solutions Home"
+      style={{ margin: `-${crop * 0.5}px -${crop}px` }}
+    >
       <Image
         src="/logo.jpeg"
         alt="Smart Way Solutions"
-        width={w}
-        height={h}
-        className="object-contain"
+        width={render}
+        height={render}
+        className="object-contain block"
         style={{
-          // On dark backgrounds the white border of the logo blends in;
-          // on light backgrounds it sits naturally — no filter needed.
-          filter: variant === "light" ? "brightness(1.08)" : "none",
+          filter: variant === "light" ? "brightness(1.1) drop-shadow(0 1px 3px rgba(0,0,0,0.25))" : "none",
+          flexShrink: 0,
         }}
         priority
       />

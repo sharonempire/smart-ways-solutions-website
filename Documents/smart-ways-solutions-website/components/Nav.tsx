@@ -39,7 +39,7 @@ export default function Nav() {
     <>
       <header className="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-          <Logo size="md" variant="dark" />
+          <Logo size="lg" variant="dark" />
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6">
@@ -103,7 +103,7 @@ export default function Nav() {
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <Logo size="sm" variant="dark" />
+          <Logo size="md" variant="dark" />
           <button
             onClick={() => setOpen(false)}
             className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"

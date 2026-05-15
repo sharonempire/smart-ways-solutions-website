@@ -111,7 +111,7 @@ export default function Footer() {
 
         {/* Brand column */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <Logo size="md" variant="light" />
+          <Logo size="lg" variant="light" />
           <p className="text-sm leading-relaxed text-gray-500 mt-4 mb-6">
             Kerala&apos;s trusted loan DSA — connecting you with the best home loan and property loan offers from 16+ nationalised banks, private banks, and NBFCs. Zero fees. Zero hassle.
           </p>
