@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Smart Ways Solutions | Finance Consultancy",
-  description: "Expert financial consultancy services — wealth management, tax advisory, investment planning, and business finance solutions.",
+  title: "Smart Way Solutions | Home Loan & Finance Consultancy Kerala",
+  description: "Kerala's trusted loan DSA — home loans, takeover, LAP, and business loans from 16+ banks and NBFCs. Salaried, self-employed, and NRI. Apply free.",
 };
 
 export default function RootLayout({
@@ -33,6 +34,7 @@ export default function RootLayout({
           <Nav />
           <main className="flex-1">{children}</main>
           <Footer />
+          <WhatsAppButton />
         </body>
     </html>
   );
