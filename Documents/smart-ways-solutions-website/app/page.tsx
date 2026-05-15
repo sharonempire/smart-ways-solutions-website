@@ -5,6 +5,7 @@ import BankPartners from "@/components/BankPartners";
 import CTABanner from "@/components/CTABanner";
 import EMICalculator from "@/components/EMICalculator";
 import GoogleReviews from "@/components/GoogleReviews";
+import WaveDivider from "@/components/WaveDivider";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -85,6 +86,9 @@ export default function Home() {
       <Hero />
       <Stats />
 
+      {/* amber → white */}
+      <WaveDivider fromColor="#F5A623" toColor="#ffffff" />
+
       {/* Loan Categories */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -124,6 +128,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* white → light-gray */}
+      <WaveDivider fromColor="#ffffff" toColor="#f8f8f8" flip />
+
       {/* How It Works */}
       <section className="py-20 px-6 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto">
@@ -144,6 +151,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* light-gray → white */}
+      <WaveDivider fromColor="#f8f8f8" toColor="#ffffff" />
 
       {/* Who Can Apply */}
       <section className="py-20 px-6 bg-white">
@@ -196,6 +206,9 @@ export default function Home() {
 
       <BankPartners />
 
+      {/* light-gray → white (after BankPartners which is f8f8f8) */}
+      <WaveDivider fromColor="#f8f8f8" toColor="#ffffff" flip />
+
       {/* Testimonials */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -233,6 +246,9 @@ export default function Home() {
           <EMICalculator />
         </div>
       </section>
+
+      {/* white → light-gray */}
+      <WaveDivider fromColor="#ffffff" toColor="#f8f8f8" />
 
       {/* Phase 16 — Kerala SEO keyword content */}
       <section className="py-16 px-6 bg-[#f8f8f8]">
@@ -292,7 +308,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* light-gray → white */}
+      <WaveDivider fromColor="#f8f8f8" toColor="#ffffff" flip />
+
       <GoogleReviews />
+
+      {/* white → amber */}
+      <WaveDivider fromColor="#ffffff" toColor="#F5A623" />
 
       <CTABanner />
     </>
