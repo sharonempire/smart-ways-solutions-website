@@ -8,6 +8,7 @@ import GoogleReviews from "@/components/GoogleReviews";
 import WaveDivider from "@/components/WaveDivider";
 import FadeIn from "@/components/FadeIn";
 import TiltCard from "@/components/TiltCard";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -69,16 +70,25 @@ const testimonials = [
     name: "Rajan Menon",
     location: "Kerala",
     quote: "Smart Way Solutions got my home loan sanctioned in 10 days. They handled all paperwork and got a rate 0.5% lower than what SBI quoted me directly.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&auto=format&q=80",
+    loan: "Home Loan · SBI",
+    saved: "Saved 0.5% on rate",
   },
   {
     name: "Anitha Suresh",
     location: "Ernakulam, Kerala",
     quote: "I had a KSFE home loan at 9.5%. Smart Way transferred it to HDFC at 8.6% — now I save ₹3,800 every month on EMI.",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b332c38b?w=80&h=80&fit=crop&crop=face&auto=format&q=80",
+    loan: "KSFE Takeover · HDFC",
+    saved: "Saves ₹3,800/month",
   },
   {
     name: "Mohammed Ashraf",
     location: "Kozhikode, Kerala",
     quote: "As a Gulf NRI, I was worried about the loan process from abroad. Their team handled everything locally with my PoA and got the loan approved smoothly.",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&crop=face&auto=format&q=80",
+    loan: "NRI Home Loan",
+    saved: "Approved in 12 days",
   },
 ];
 
@@ -162,6 +172,21 @@ export default function Home() {
       {/* light-gray → white */}
       <WaveDivider fromColor="#f8f8f8" toColor="#ffffff" />
 
+      {/* Visual photo strip between sections */}
+      <div className="bg-white py-4 px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-3 gap-3">
+          {[
+            { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop&auto=format&q=80", alt: "Modern Kerala home" },
+            { src: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&auto=format&q=80", alt: "Happy family new home" },
+            { src: "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=600&h=400&fit=crop&auto=format&q=80", alt: "Home loan consultation" },
+          ].map((img) => (
+            <div key={img.src} className="relative rounded-2xl overflow-hidden aspect-video">
+              <Image src={img.src} alt={img.alt} fill className="object-cover" unoptimized />
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Who Can Apply */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -233,11 +258,37 @@ export default function Home() {
             {testimonials.map((t, i) => (
               <FadeIn key={t.name} delay={i * 100}>
                 <TiltCard className="h-full" maxTilt={5}>
-                  <div className="bg-[#f8f8f8] rounded-xl p-6 border border-gray-100 h-full">
-                    <p className="text-[#F5A623] text-3xl font-black mb-3">&ldquo;</p>
-                    <p className="text-gray-700 text-sm leading-relaxed mb-5">{t.quote}</p>
-                    <p className="text-[#1a1a1a] font-bold text-sm">{t.name}</p>
-                    <p className="text-gray-400 text-xs">{t.location}</p>
+                  <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full flex flex-col">
+                    {/* Stars */}
+                    <div className="flex gap-0.5 mb-4">
+                      {[...Array(5)].map((_, j) => (
+                        <svg key={j} className="w-4 h-4 text-[#F5A623]" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    {/* Quote */}
+                    <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-5">&ldquo;{t.quote}&rdquo;</p>
+                    {/* Loan badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="bg-[#F5A623]/10 text-[#d4891a] text-[11px] font-bold px-2.5 py-1 rounded-full">{t.loan}</span>
+                      <span className="text-green-600 text-[11px] font-bold">{t.saved}</span>
+                    </div>
+                    {/* Author */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                      <Image
+                        src={t.avatar}
+                        alt={t.name}
+                        width={40}
+                        height={40}
+                        className="rounded-full object-cover"
+                        unoptimized
+                      />
+                      <div>
+                        <p className="text-[#1a1a1a] font-black text-sm">{t.name}</p>
+                        <p className="text-gray-400 text-xs">{t.location}</p>
+                      </div>
+                    </div>
                   </div>
                 </TiltCard>
               </FadeIn>
