@@ -18,16 +18,6 @@ export default function JsonLd() {
         url: "https://www.smartwaysolutions.in",
         telephone: "+91-00000-00000",
         email: "loans@smartwaysolutions.com",
-        address: {
-          "@type": "PostalAddress",
-          addressRegion: "Kerala",
-          addressCountry: "IN",
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: "10.8505",
-          longitude: "76.2711",
-        },
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",

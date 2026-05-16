@@ -67,7 +67,7 @@ const howItWorks = [
 const testimonials = [
   {
     name: "Rajan Menon",
-    location: "Thrissur, Kerala",
+    location: "Kerala",
     quote: "Smart Way Solutions got my home loan sanctioned in 10 days. They handled all paperwork and got a rate 0.5% lower than what SBI quoted me directly.",
   },
   {

@@ -15,8 +15,8 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2015", label: "Founded", desc: "Started as a single-office loan advisory in Thrissur, Kerala." },
-  { year: "2018", label: "500 Loans", desc: "Crossed 500 loans sanctioned. Expanded to Kozhikode and Ernakulam." },
+  { year: "2015", label: "Founded", desc: "Started as a loan advisory with a mission to make home loans simple and accessible in Kerala." },
+  { year: "2018", label: "500 Loans", desc: "Crossed 500 loans sanctioned. Expanded reach across multiple districts in Kerala." },
   { year: "2020", label: "₹100 Cr+", desc: "Facilitated over ₹100 Crore in home loans across Kerala." },
   { year: "2022", label: "16 Partners", desc: "Grew to 16+ bank and NBFC tie-ups. Launched NRI loan desk." },
   { year: "2025", label: "₹500 Cr+", desc: "Over ₹500 Crore facilitated. 2,500+ happy families across Kerala." },
@@ -39,7 +39,7 @@ const differentiators = [
     desc: "We compare live offers across all our partner banks and present you with the lowest available rate for your exact profile.",
   },
   {
-    icon: "📍",
+    icon: "🌴",
     title: "Kerala Specialists",
     desc: "Deep knowledge of Kerala property norms, panchayat approvals, RERA compliance, and local bank procedures.",
   },

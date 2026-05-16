@@ -137,7 +137,7 @@ export default function Footer() {
               <WhatsAppIcon />
             </a>
             <a
-              href="https://www.google.com/maps/search/Smart+Way+Solutions+Kerala"
+              href="https://www.google.com/search?q=Smart+Way+Solutions+loan+services"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Google Maps"
@@ -215,10 +215,6 @@ export default function Footer() {
               <span>loans@smartwaysolutions.com</span>
             </li>
             <li className="flex items-start gap-2.5">
-              <span className="text-[#F5A623] mt-0.5"><MapPinIcon /></span>
-              <span>Kerala, India</span>
-            </li>
-            <li className="flex items-start gap-2.5">
               <span className="text-[#F5A623] mt-0.5"><ClockIcon /></span>
               <span>Mon–Sat: 9 AM – 7 PM</span>
             </li>
@@ -254,7 +250,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-gray-700">
-          <span>© {new Date().getFullYear()} Smart Way Solutions. All rights reserved. · Kerala, India</span>
+          <span>© {new Date().getFullYear()} Smart Way Solutions. All rights reserved.</span>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="hover:text-gray-400 transition-colors">Privacy Policy</Link>
             <Link href="/contact" className="hover:text-gray-400 transition-colors">Contact</Link>

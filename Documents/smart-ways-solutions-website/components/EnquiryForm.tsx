@@ -111,7 +111,7 @@ export default function EnquiryForm() {
             </li>
             <li className="flex items-center gap-2">
               <span>📞</span>
-              <span>Call us directly: <strong>+91 00000 00000</strong></span>
+              <span>Call us: <strong>+91 00000 00000</strong></span>
             </li>
           </ul>
         </div>

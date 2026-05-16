@@ -155,7 +155,7 @@ export default function Nav() {
             </svg>
             WhatsApp Us
           </a>
-          <p className="text-gray-400 text-[10px] text-center">Mon–Sat 9 AM – 7 PM · Kerala, India</p>
+          <p className="text-gray-400 text-[10px] text-center">Mon–Sat 9 AM – 7 PM</p>
         </div>
       </div>
     </>

@@ -49,7 +49,7 @@ export default function EnquirePage() {
             {[
               { icon: "📞", label: "Call Us", value: "+91 00000 00000" },
               { icon: "📧", label: "Email", value: "loans@smartwaysolutions.com" },
-              { icon: "📍", label: "Location", value: "Kerala, India" },
+              { icon: "🌴", label: "Serving", value: "All of Kerala" },
               { icon: "🕐", label: "Hours", value: "Mon–Sat: 9 AM – 7 PM" },
             ].map((item) => (
               <div key={item.label} className="flex gap-4 items-center bg-white rounded-xl px-5 py-4 border border-gray-100 shadow-sm">
