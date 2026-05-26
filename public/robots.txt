@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/
+
+# Host
+Host: https://www.smartwaysolutions.in
+
+# Sitemaps
+Sitemap: https://www.smartwaysolutions.in/sitemap.xml
